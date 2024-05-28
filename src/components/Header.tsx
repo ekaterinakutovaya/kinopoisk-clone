@@ -38,7 +38,7 @@ export const Header = () => {
 
           <div className="flex items-center gap-x-[20px]">
             <div className="text-white opacity-60 hover:opacity-100 transition-all duration-300">
-              <IoBookmarkSharp className="w-[24px] h-[24px]" />
+              <IoBookmarkSharp className="w-[24px] h-[24px] cursor-pointer" />
             </div>
 
             <Button className="max-w-[121px] max-h-[40px] text-[11px] font-[600]">
