@@ -151,6 +151,22 @@ body {
   border: 1px dotted white;
 }
 
+header {
+  top: var(--header-height); /* initial position */
+}
+
+header.scrolled {
+  top: calc(72px - var(--header-height));
+}
+
+.transition-top {
+  transition: top 0.3s ease-in-out;
+}
+
+aside {
+  top: var(--header-height); /* initial position */
+}
+
 .sidebar-border {
   border-right: 1px solid #e8e8e8;
 }
@@ -195,7 +211,7 @@ body {
   border-radius: 9999px;
   width: 44px;
   height: 44px;
-  z-index: 10;
+  z-index: 2;
   background-color: #fff;
 
   &:after {

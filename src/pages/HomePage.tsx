@@ -10,7 +10,7 @@ export const HomePage = () => {
         <Sidebar />
       </div>
 
-      <div className="max-w-full flex-1 mt-[30px] px-[16px] lg:px-[50px]">
+      <div className="max-w-full flex-1 px-[16px] lg:px-[50px] mt-[calc(30px+var(--header-height))]">
         <PromoBlock />
         <Festivals />
         <Recommends />

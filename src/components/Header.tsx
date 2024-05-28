@@ -11,10 +11,26 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar.tsx";
 import { FaUser } from "react-icons/fa6";
+import { useEffect, useState } from "react";
 
 export const Header = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  // top-[calc(72px-var(--header-height))]
   return (
-    <header className="sticky w-full h-header-height bg-header-image bg-cover bg-center">
+    <header
+      className={`fixed top-0 z-10 w-full h-header-height bg-header-image bg-cover bg-center transition-top duration-300 ${scrolled ? "scrolled" : ""}`}
+    >
       <div className="container h-full flex flex-col justify-end">
         <div className="text-white px-[50px] h-[72px] grid grid-cols-[auto_1fr_auto] gap-x-[24px]">
           <Link to="/" className="max-w-[164px] overflow-hidden">
