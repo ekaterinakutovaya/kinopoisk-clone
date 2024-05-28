@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { FreeMode, Navigation } from "swiper/modules";
 import { movies } from "@/constants.tsx";
 import MovieCard from "@/components/MovieCard.tsx";
 import { useEffect, useRef } from "react";
@@ -39,11 +39,13 @@ export const Recommends = () => {
         </div>
       </div>
 
-      <div className="relative border-green">
+      <div className="relative">
         <Swiper
-          modules={[Navigation]}
-          slidesPerView={6}
-          spaceBetween={15}
+          loop={false}
+          freeMode={true}
+          modules={[Navigation, FreeMode]}
+          // slidesPerView={6}
+          // spaceBetween={15}
           onSlideChange={() => console.log("slide change")}
           onSwiper={handleSwiperInit}
           className="w-full"
@@ -54,13 +56,13 @@ export const Recommends = () => {
           breakpoints={{
             // when window width is >= 320px
             0: {
-              slidesPerView: 2,
+              slidesPerView: "auto",
               spaceBetween: 8,
             },
             // when window width is >= 768px
             768: {
               slidesPerView: 6,
-              spaceBetween: 15,
+              spaceBetween: 28,
             },
           }}
         >
