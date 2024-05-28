@@ -5,7 +5,7 @@ import { IoPlaySharp } from "react-icons/io5";
 
 export const PromoBlock = () => {
   return (
-    <div className="w-full max-w-[1030px] h-[400px] relative promo-wrapper">
+    <div className="hidden lg:block  w-full max-w-[926px] h-[400px] relative promo-wrapper">
       <div className="promo-content">
         <Link to="#">
           <img src="//avatars.mds.yandex.net/get-bunker/998550/dbc9c484635831df4d6e4f0ee6f14c7300e46e65/800x124" />

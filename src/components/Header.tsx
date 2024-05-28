@@ -14,7 +14,7 @@ import { FaUser } from "react-icons/fa6";
 
 export const Header = () => {
   return (
-    <header className="w-full h-header-height bg-header-image bg-cover bg-center">
+    <header className="sticky w-full h-header-height bg-header-image bg-cover bg-center">
       <div className="container h-full flex flex-col justify-end">
         <div className="text-white px-[50px] h-[72px] grid grid-cols-[auto_1fr_auto] gap-x-[24px]">
           <Link to="/" className="max-w-[164px] overflow-hidden">

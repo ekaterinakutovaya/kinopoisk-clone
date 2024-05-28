@@ -1,6 +1,11 @@
 import { MdHomeFilled } from "react-icons/md";
 import { IoPlaySharp } from "react-icons/io5";
 import poster001 from "../public/images/poster001.webp";
+import festival001 from "../public/images/festival001.webp";
+import festival002 from "../public/images/festival002.webp";
+import festival003 from "../public/images/festival003.webp";
+import festival004 from "../public/images/festival004.webp";
+import festival005 from "../public/images/festival005.webp";
 
 export const mainNavigation = [
   {
@@ -125,5 +130,28 @@ export const tempTop10 = [
     rate: 7.7,
     isSuggest: true,
     poster: poster001,
+  },
+];
+
+export const festivals = [
+  {
+    id: 1,
+    img: festival001,
+  },
+  {
+    id: 2,
+    img: festival002,
+  },
+  {
+    id: 3,
+    img: festival003,
+  },
+  {
+    id: 4,
+    img: festival004,
+  },
+  {
+    id: 5,
+    img: festival005,
   },
 ];

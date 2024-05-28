@@ -4,7 +4,12 @@
 @tailwind utilities;
 
 @layer base {
+
   :root {
+    --swiper-theme-color: #666666;
+    --swiper-navigation-size: 14px;
+    --swiper-navigation-sides-offset: -22px;
+
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -182,4 +187,24 @@ body {
 .button-gradient {
   background: linear-gradient(135deg,#f50 69.93%,#d6bb00);
   transition: background .2s ease,transform .2s ease;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  //z-index: 10;
+  border: 1px solid #e8e8e8;
+  border-radius: 9999px;
+  width: 44px;
+  height: 44px;
+  z-index: 10000;
+  background-color: #fff;
+}
+
+.swiper-button-prev.swiper-button-disabled {
+  opacity: 0;
+}
+.swiper-button-next.swiper-button-disabled {
+  opacity: 0;
 }
