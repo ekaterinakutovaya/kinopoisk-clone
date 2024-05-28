@@ -59,7 +59,7 @@ export const Festivals = () => {
           </Swiper>
           <div
             ref={swiperPrevRef}
-            className="hidden lg:flex swiper-button-prev"
+            className="hidden lg:flex swiper-button-prev top-[50%] transform -translate-y-1/2"
           >
             <div className="w-[16px] h-[16px]">
               <HiChevronLeft className="w-full h-full object-contain" />
@@ -67,7 +67,7 @@ export const Festivals = () => {
           </div>
           <div
             ref={swiperNextRef}
-            className="hidden lg:flex swiper-button-next"
+            className="hidden lg:flex swiper-button-next top-[50%] transform -translate-y-1/2"
           >
             <div className="w-[16px] h-[16px]">
               <HiChevronRight className="w-full h-full object-contain" />

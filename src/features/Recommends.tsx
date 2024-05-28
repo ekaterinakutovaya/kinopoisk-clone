@@ -75,12 +75,18 @@ export const Recommends = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div ref={swiperPrevRef} className="hidden lg:flex swiper-button-prev">
+        <div
+          ref={swiperPrevRef}
+          className="hidden lg:flex swiper-button-prev top-[42%] transform -translate-y-1/2"
+        >
           <div className="w-[16px] h-[16px]">
             <HiChevronLeft className="w-full h-full object-contain" />
           </div>
         </div>
-        <div ref={swiperNextRef} className="hidden lg:flex swiper-button-next">
+        <div
+          ref={swiperNextRef}
+          className="hidden lg:flex swiper-button-next top-[42%] transform -translate-y-1/2"
+        >
           <div className="w-[16px] h-[16px]">
             <HiChevronRight className="w-full h-full object-contain" />
           </div>
