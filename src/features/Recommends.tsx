@@ -44,8 +44,6 @@ export const Recommends = () => {
           loop={false}
           freeMode={true}
           modules={[Navigation, FreeMode]}
-          // slidesPerView={6}
-          // spaceBetween={15}
           onSlideChange={() => console.log("slide change")}
           onSwiper={handleSwiperInit}
           className="w-full"
@@ -54,12 +52,10 @@ export const Recommends = () => {
             nextEl: swiperNextRef.current,
           }}
           breakpoints={{
-            // when window width is >= 320px
             0: {
               slidesPerView: "auto",
               spaceBetween: 8,
             },
-            // when window width is >= 768px
             768: {
               slidesPerView: 6,
               spaceBetween: 28,
@@ -91,14 +87,6 @@ export const Recommends = () => {
             <HiChevronRight className="w-full h-full object-contain" />
           </div>
         </div>
-        {/*<div*/}
-        {/*  ref={swiperPrevRef}*/}
-        {/*  className="hidden lg:block swiper-button-prev top-[42%] transform -translate-y-1/2"*/}
-        {/*></div>*/}
-        {/*<div*/}
-        {/*  ref={swiperNextRef}*/}
-        {/*  className="hidden lg:block swiper-button-next top-[42%] transform -translate-y-1/2"*/}
-        {/*></div>*/}
       </div>
     </div>
   );

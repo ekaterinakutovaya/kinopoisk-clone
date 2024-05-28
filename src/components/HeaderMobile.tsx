@@ -19,7 +19,7 @@ export const HeaderMobile = () => {
   const [searchOpen, setSearchOpen] = useState(false);
 
   return (
-    <header className="bg-[#141414] sticky top-0">
+    <header className="bg-[#141414] sticky top-0 z-10">
       <div className="h-header-height container flex items-center gap-x-4 px-[16px]">
         <Button
           variant="ghost"

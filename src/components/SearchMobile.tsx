@@ -9,7 +9,7 @@ type SearchMobileProps = {
 
 export const SearchMobile = ({ setSearchOpen }: SearchMobileProps) => {
   return (
-    <div className="fixed w-full top-0 left-0">
+    <div className="fixed w-full top-0 left-0 bg-white">
       <div className="w-full h-header-height bg-[#444] flex items-center justify-between px-[24px]">
         <IoSearch className="min-w-[24px] min-h-[24px] text-white opacity-60" />
         <input
