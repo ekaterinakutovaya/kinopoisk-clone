@@ -39,54 +39,35 @@ export const Recommends = () => {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="relative border-green">
         <Swiper
           modules={[Navigation]}
           slidesPerView={6}
           spaceBetween={15}
           onSlideChange={() => console.log("slide change")}
           onSwiper={handleSwiperInit}
-          className="w-full border-red"
+          className="w-full"
           navigation={{
             prevEl: swiperPrevRef.current,
             nextEl: swiperNextRef.current,
           }}
-          // breakpoints={{
-          //   // when window width is >= 320px
-          //   0: {
-          //     slidesPerView: 3,
-          //     spaceBetween: 2,
-          //   },
-          //   320: {
-          //     slidesPerView: 3,
-          //     spaceBetween: 2,
-          //   },
-          //   // when window width is >= 480px
-          //   480: {
-          //     slidesPerView: 3,
-          //     spaceBetween: 15,
-          //   },
-          //   // when window width is >= 768px
-          //   768: {
-          //     slidesPerView: 3,
-          //     spaceBetween: 15,
-          //   },
-          //   // when window width is >= 1024px
-          //   1024: {
-          //     slidesPerView: 6,
-          //     spaceBetween: 20,
-          //   },
-          //   // when window width is >= 1440px
-          //   1440: {
-          //     slidesPerView: 6,
-          //     spaceBetween: 20,
-          //   },
-          // }}
+          breakpoints={{
+            // when window width is >= 320px
+            0: {
+              slidesPerView: 2,
+              spaceBetween: 8,
+            },
+            // when window width is >= 768px
+            768: {
+              slidesPerView: 6,
+              spaceBetween: 15,
+            },
+          }}
         >
           {movies.map((item) => (
             <SwiperSlide
               key={item.id}
-              className="w-[128px] lg:w-[150px] max-w-[150px] lg:h-[289px]"
+              className="max-w-[128px] lg:w-[150px] lg:h-[289px]"
             >
               <MovieCard img={item.img} />
             </SwiperSlide>
