@@ -11,9 +11,12 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      // padding: "2rem",
+      // padding: "16px",
       screens: {
-        "2xl": "1280px",
+        xs: "375px",
+        sm: "768px",
+        md: "1060px",
+        lg: "1280px",
       },
     },
     extend: {
@@ -73,6 +76,11 @@ module.exports = {
       },
       height: {
         "header-height": "var(--header-height)",
+        "mobile-body-height": "calc(100dvh - var(--header-height))",
+        "desktop-body-height": "calc(100vh - var(--header-height))",
+      },
+      minHeight: {
+        "desktop-body-min-height": "calc(100vh - var(--header-height))",
       },
       backgroundImage: {
         "header-image":
@@ -94,6 +102,12 @@ module.exports = {
       },
       willChange: {
         transform: "transform",
+      },
+      boxShadow: {
+        "inset-custom": "inset 0 1px 0 hsla(0,0%,100%,.08)",
+      },
+      borderColor: {
+        "custom-gray": "#e8e8e8",
       },
     },
   },

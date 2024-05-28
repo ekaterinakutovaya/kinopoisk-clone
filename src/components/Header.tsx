@@ -5,7 +5,11 @@ import { PiTelevisionFill } from "react-icons/pi";
 import { SearchInput } from "@/components/SearchInput.tsx";
 import { IoBookmarkSharp } from "react-icons/io5";
 import { Button } from "@/components/ui/button.tsx";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar.tsx";
 import { FaUser } from "react-icons/fa6";
 
 export const Header = () => {
@@ -30,7 +34,7 @@ export const Header = () => {
               className="flex items-center gap-1 text-[15px] text-white font-semibold opacity-60 hover:opacity-100 transition-all duration-300 whitespace-nowrap"
             >
               <PiTelevisionFill className="w-[24px] h-[24px]" />
-              Онлайн-кинотеатр
+              Установить на ТВ
             </Link>
 
             <SearchInput />
@@ -41,7 +45,7 @@ export const Header = () => {
               <IoBookmarkSharp className="w-[24px] h-[24px] cursor-pointer" />
             </div>
 
-            <Button className="max-w-[121px] max-h-[40px] text-[11px] font-[600]">
+            <Button className="max-w-[121px] max-h-[40px] text-[11px] font-[600] whitespace-normal">
               Смотреть кино бесплатно
             </Button>
 
