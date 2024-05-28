@@ -193,13 +193,16 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  //z-index: 10;
   border: 1px solid #e8e8e8;
   border-radius: 9999px;
   width: 44px;
   height: 44px;
   z-index: 10000;
   background-color: #fff;
+
+  &:after {
+    display: none;
+  }
 }
 
 .swiper-button-prev.swiper-button-disabled {

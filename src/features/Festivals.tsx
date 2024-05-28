@@ -6,8 +6,32 @@ import { festivals } from "@/constants.tsx";
 import "swiper/css/navigation";
 
 import { Navigation } from "swiper/modules";
+import { useEffect, useRef } from "react";
+import { NavigationOptions } from "swiper/types";
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 
 export const Festivals = () => {
+  const swiperPrevRef = useRef(null);
+  const swiperNextRef = useRef(null);
+  const swiperRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (swiperRef.current && swiperRef.current.navigation) {
+      swiperRef.current.navigation.update();
+    }
+  }, []);
+
+  const handleSwiperInit = (swiper: any) => {
+    swiperRef.current = swiper;
+    if (swiper.params.navigation) {
+      const navigation = swiper.params.navigation as NavigationOptions;
+      navigation.prevEl = swiperPrevRef.current;
+      navigation.nextEl = swiperNextRef.current;
+      swiper.navigation.init();
+      swiper.navigation.update();
+    }
+  };
+
   return (
     <div>
       <div className="hidden lg:block mt-[30px] max-w-[926px] min-h-[349px]">
@@ -20,11 +44,11 @@ export const Festivals = () => {
             slidesPerView={4}
             spaceBetween={15}
             onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
+            onSwiper={handleSwiperInit}
             className="w-full"
             navigation={{
-              prevEl: ".swiper-button-prev",
-              nextEl: ".swiper-button-next",
+              prevEl: swiperPrevRef.current,
+              nextEl: swiperNextRef.current,
             }}
           >
             {festivals.map((item) => (
@@ -33,8 +57,22 @@ export const Festivals = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="swiper-button-prev"></div>
-          <div className="swiper-button-next"></div>
+          <div
+            ref={swiperPrevRef}
+            className="hidden lg:flex swiper-button-prev"
+          >
+            <div className="w-[16px] h-[16px]">
+              <HiChevronLeft className="w-full h-full object-contain" />
+            </div>
+          </div>
+          <div
+            ref={swiperNextRef}
+            className="hidden lg:flex swiper-button-next"
+          >
+            <div className="w-[16px] h-[16px]">
+              <HiChevronRight className="w-full h-full object-contain" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

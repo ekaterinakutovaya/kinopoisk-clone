@@ -1,6 +1,7 @@
 import { MdHomeFilled } from "react-icons/md";
 import { IoPlaySharp } from "react-icons/io5";
 import poster001 from "../public/images/poster001.webp";
+import poster002 from "../public/images/poster002.webp";
 import festival001 from "../public/images/festival001.webp";
 import festival002 from "../public/images/festival002.webp";
 import festival003 from "../public/images/festival003.webp";
@@ -153,5 +154,47 @@ export const festivals = [
   {
     id: 5,
     img: festival005,
+  },
+];
+export const movies = [
+  {
+    id: 1,
+    img: poster001,
+  },
+  {
+    id: 2,
+    img: poster002,
+  },
+  {
+    id: 3,
+    img: poster001,
+  },
+  {
+    id: 4,
+    img: poster001,
+  },
+  {
+    id: 5,
+    img: poster001,
+  },
+  {
+    id: 6,
+    img: poster001,
+  },
+  {
+    id: 7,
+    img: poster001,
+  },
+  {
+    id: 8,
+    img: poster001,
+  },
+  {
+    id: 9,
+    img: poster001,
+  },
+  {
+    id: 10,
+    img: poster001,
   },
 ];
