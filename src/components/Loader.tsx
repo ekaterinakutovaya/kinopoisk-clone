@@ -1,5 +1,5 @@
 export const Loader = () => {
-  const styles = `mr-3 h-5 w-5 animate-spin #f43f5e`;
+  const styles = `mr-3 h-5 w-5 animate-spin text-rose-600`;
 
   return (
     <svg

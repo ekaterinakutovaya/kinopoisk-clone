@@ -87,6 +87,9 @@ module.exports = {
           "linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.8)), url('/images/header-banner.jpg')",
         "button-gradient":
           "linear-gradient(90deg, #eb5547, #d84092 26.56%, #793cdc 75%, #3a60e5)",
+        "play-button-gradient": "linear-gradient(135deg, #f50 69.93%, #d6bb00)",
+        "gold-gradient":
+          "linear-gradient(165deg, #ffd25e 16.44%, #b59646 63.42%)",
       },
       backgroundColor: {
         "transparent-bg": "hsla(0, 0%, 100%, 0.15)",

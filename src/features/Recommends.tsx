@@ -1,17 +1,37 @@
 import { ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
-import { movies } from "@/constants.tsx";
 import MovieCard from "@/components/MovieCard.tsx";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavigationOptions } from "swiper/types";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
+import axios from "axios";
 
 export const Recommends = () => {
   const swiperPrevRef = useRef(null);
   const swiperNextRef = useRef(null);
-
   const swiperRef = useRef<any>(null);
+
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${import.meta.env.VITE_API_URL}/v1.4/movie?page=1&limit=30&lists=top250`,
+        {
+          headers: {
+            "X-API-KEY": import.meta.env.VITE_X_API_KEY,
+          },
+        },
+      )
+      .then((response) => {
+        console.log(response.data.docs);
+        setResults(response.data.docs);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+  }, []);
 
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.navigation) {
@@ -33,7 +53,7 @@ export const Recommends = () => {
   return (
     <div className="mt-[30px] max-w-[926px] min-h-[349px]">
       <div className="flex items-center mb-[16px]">
-        <h2 className=" text-[22px] font-bold leading-[28px] ">Рекомендации</h2>
+        <h2 className=" text-[22px] font-bold leading-[28px]">Рекомендации</h2>
         <div className="flex items-center -mb-[3px]">
           <ChevronRight className="w-[28px] h-[28px] leading-[28px]" />
         </div>
@@ -62,14 +82,15 @@ export const Recommends = () => {
             },
           }}
         >
-          {movies.map((item) => (
-            <SwiperSlide
-              key={item.id}
-              className="max-w-[128px] lg:w-[150px] lg:h-[289px]"
-            >
-              <MovieCard img={item.img} />
-            </SwiperSlide>
-          ))}
+          {results.length &&
+            results.map((item, i) => (
+              <SwiperSlide
+                key={i}
+                className="max-w-[128px] lg:w-[150px] lg:min-h-[289px]"
+              >
+                <MovieCard item={item} />
+              </SwiperSlide>
+            ))}
         </Swiper>
         <div
           ref={swiperPrevRef}

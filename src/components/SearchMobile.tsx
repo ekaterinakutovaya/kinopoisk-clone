@@ -79,7 +79,9 @@ export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
               </Link>
             ))
           ) : (
-            <Loader />
+            <div className="flex items-center justify-center pt-4">
+              <Loader />
+            </div>
           )}
         </div>
       </div>

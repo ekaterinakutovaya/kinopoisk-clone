@@ -60,7 +60,9 @@ export const Suggest = ({ data }: Props) => {
               </Link>
             ))
           ) : (
-            <Loader />
+            <div className="flex items-center justify-center py-4">
+              <Loader />
+            </div>
           )}
         </div>
       </div>
