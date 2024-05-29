@@ -10,7 +10,7 @@ import axios from "axios";
 export const Recommends = () => {
   const swiperPrevRef = useRef(null);
   const swiperNextRef = useRef(null);
-  const swiperRef = useRef<any>(null);
+  const swiperRef = useRef<never>(null);
 
   const [results, setResults] = useState([]);
 
@@ -33,7 +33,11 @@ export const Recommends = () => {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     if (swiperRef.current && swiperRef.current.navigation) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       swiperRef.current.navigation.update();
     }
   }, []);
@@ -63,7 +67,6 @@ export const Recommends = () => {
           loop={false}
           freeMode={true}
           modules={[Navigation, FreeMode]}
-          onSlideChange={() => console.log("slide change")}
           onSwiper={handleSwiperInit}
           className="w-full"
           navigation={{
@@ -81,7 +84,7 @@ export const Recommends = () => {
             },
           }}
         >
-          {results.length &&
+          {results &&
             results.map((item, i) => (
               <SwiperSlide
                 key={i}

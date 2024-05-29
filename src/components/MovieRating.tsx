@@ -61,7 +61,7 @@ export const MovieRating = ({
 
         <div className="-mt-2">
           <div className="flex gap-4 mb-2">
-            {ratingKp >= 8 ? (
+            {ratingKp >= 9 ? (
               <div className="text-[48px] leading-[48px] font-bold clip-text">
                 {ratingKp.toFixed(1)}
               </div>
@@ -79,7 +79,7 @@ export const MovieRating = ({
               </div>
             )}
 
-            {ratingKp >= 8 && (
+            {ratingKp >= 9 && (
               <div className="rating-badge pt-[4px]">
                 <div className="flex items-center gap-1">
                   <span className="icon-left"></span>
@@ -99,10 +99,14 @@ export const MovieRating = ({
 
           <div className="text-[13px] text-[#00000099]">
             <span>{formatNumberWithSpaces(kpVotes)} оценок</span>{" "}
-            <span className="ml-2">
-              <span className="font-bold">IMDb: {ratingImdb.toFixed(2)}</span>{" "}
-              {formatNumberWithSpaces(imdbVotes)} оценок
-            </span>
+            {ratingImdb ? (
+              <span className="ml-2">
+                <span className="font-bold">IMDb: {ratingImdb.toFixed(2)}</span>{" "}
+                {formatNumberWithSpaces(imdbVotes)} оценок
+              </span>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

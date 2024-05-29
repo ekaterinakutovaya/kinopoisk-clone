@@ -1,22 +1,28 @@
-import poster from "../../public/images/poster001.webp";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useEffect, useRef } from "react";
 import { NavigationOptions } from "swiper/types";
 import { chunkArray } from "@/lib/utils.ts";
+import { Person } from "@/types.ts";
 
-export const CreatorList = () => {
-  const list = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ];
+type Props = {
+  creators: Person[] | null;
+};
 
-  const chunkedList = chunkArray(list, 2);
+export const CreatorList = ({ creators }: Props) => {
+  if (!creators) {
+    return null;
+  }
+
+  const chunkedList = chunkArray(creators, 2);
 
   const swiperPrevRef = useRef(null);
   const swiperNextRef = useRef(null);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const swiperRef = useRef<any>(null);
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.navigation) {
       swiperRef.current.navigation.update();
@@ -45,7 +51,6 @@ export const CreatorList = () => {
           modules={[Navigation, FreeMode]}
           slidesPerView={4}
           spaceBetween={15}
-          onSlideChange={() => console.log("slide change")}
           onSwiper={handleSwiperInit}
           className="w-full"
           navigation={{
@@ -74,15 +79,17 @@ export const CreatorList = () => {
                     <div className="flex items-center gap-4">
                       <div className="w-[40px] h-[60px] overflow-hidden">
                         <img
-                          src={poster}
-                          alt={`Actor ${item}`}
+                          src={item.photo}
+                          alt=""
                           className="w-full h-full object-cover"
                         />
                       </div>
 
                       <div>
-                        <div className="font-bold">Actor {item}</div>
-                        <div className="text-sm text-gray-500">Role {item}</div>
+                        <div className="font-bold">{item.name}</div>
+                        <div className="text-sm text-gray-500">
+                          {item.enProfession}
+                        </div>
                       </div>
                     </div>
                   </div>

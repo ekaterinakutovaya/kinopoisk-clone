@@ -21,7 +21,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         round:
           "text-white bg-[#1d1d1d]  hover:scale-105 transition-transform duration-200 ease",
-        play: "text-white bg-play-button-gradient",
+        play: "text-white bg-play-button-gradient hover:scale-105 transition-transform duration-200 ease",
         gray: "bg-[#f2f2f2] rounded-full hover:scale-105 transition-transform duration-200 ease text-[15px] font-bold",
         roundGray:
           "bg-[#f2f2f2] rounded-full hover:scale-105 transition-transform duration-200 ease",

@@ -43,17 +43,11 @@ export const MovieDesc = ({ data }: Props) => {
 
         {/*  Trailer  */}
         <div className="w-full mb-[24px]">
-          <div className="trailer-wrapper w-full h-[170px] overflow-hidden mb-[8px] relative cursor-pointer bg-[#f2f2f2] border border-solid border-[#f2f2f2]">
-            <img
-              src={data?.poster?.url}
-              alt=""
-              className="w-full h-full object-cover"
-            />
-
+          <div className="trailer-wrapper bg-[#0b1321] w-full h-[170px] overflow-hidden mb-[8px] relative cursor-pointer border border-solid border-[#f2f2f2]">
             <Button
               variant="play"
               size="roundSm"
-              className="opacity-0 absolute top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 z-2"
+              className="opacity-1 absolute top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 z-2"
             >
               <IoPlaySharp className="w-[24px] h-[24px]" />
             </Button>
@@ -183,7 +177,7 @@ export const MovieDesc = ({ data }: Props) => {
               Продюсер
             </div>
             <div className="text-[13px] leading-[18px] text-black truncate">
-              {producers &&
+              {producers && producers.length > 0 ? (
                 producers.map((item, index) => (
                   <span
                     className="cursor-pointer hover:text-[#f50]"
@@ -192,14 +186,17 @@ export const MovieDesc = ({ data }: Props) => {
                     {item.name}
                     {index < producers.length - 1 && ", "}
                   </span>
-                ))}
+                ))
+              ) : (
+                <span>-</span>
+              )}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Композитор
             </div>
             <div className="text-[13px] leading-[18px] text-black truncate">
-              {composers &&
+              {composers && composers.length > 0 ? (
                 composers.map((item, index) => (
                   <span
                     className="cursor-pointer hover:text-[#f50]"
@@ -208,14 +205,17 @@ export const MovieDesc = ({ data }: Props) => {
                     {item.name}
                     {index < composers.length - 1 && ", "}
                   </span>
-                ))}
+                ))
+              ) : (
+                <span>-</span>
+              )}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Художник
             </div>
             <div className="text-[13px] leading-[18px] text-black truncate">
-              {designers &&
+              {designers && designers.length > 0 ? (
                 designers.map((item, index) => (
                   <span
                     className="cursor-pointer hover:text-[#f50]"
@@ -224,14 +224,17 @@ export const MovieDesc = ({ data }: Props) => {
                     {item.name}
                     {index < designers.length - 1 && ", "}
                   </span>
-                ))}
+                ))
+              ) : (
+                <span>-</span>
+              )}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Монтаж
             </div>
             <div className="text-[13px] leading-[18px] text-black truncate">
-              {editors &&
+              {editors && editors.length > 0 ? (
                 editors.map((item, index) => (
                   <span
                     className="cursor-pointer hover:text-[#f50]"
@@ -240,7 +243,10 @@ export const MovieDesc = ({ data }: Props) => {
                     {item.name}
                     {index < editors.length - 1 && ", "}
                   </span>
-                ))}
+                ))
+              ) : (
+                <span>-</span>
+              )}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
@@ -291,7 +297,7 @@ export const MovieDesc = ({ data }: Props) => {
       {/* Right */}
       <div className="right-column min-w-[240px] max-w-[240px]">
         <div className="rating-value flex items-center gap-[20px]">
-          {data.rating.kp >= 8 ? (
+          {data.rating.kp >= 9 ? (
             <div className="text-[32px] font-bold leading-[40px] clip-text">
               {data.rating.kp.toFixed(1)}
             </div>
@@ -308,7 +314,7 @@ export const MovieDesc = ({ data }: Props) => {
               {data.rating.kp.toFixed(1)}
             </div>
           )}
-          {data.rating.kp >= 8 && (
+          {data.rating.kp >= 9 && (
             <div className="rating-badge pt-[4px]">
               <div className="flex items-center gap-1">
                 <span className="icon-left"></span>
@@ -337,34 +343,42 @@ export const MovieDesc = ({ data }: Props) => {
           </Button>
         </div>
 
-        <div className="mt-[10px] text-[13px] text-[#00000099] cursor-pointer hover:text-[#f50]">
-          {data.votes.filmCritics && data.votes.filmCritics} рецензий
-        </div>
-
-        <div className="flex flex-col mt-[200px] gap-2">
-          <div className="flex items-center mb-[10px]">
-            <h2 className=" text-[15px] font-bold leading-[20px]">
-              В главных ролях
-            </h2>
-            <div className="flex items-center -mb-[2px]">
-              <ChevronRight className="w-[20px] h-[20px] leading-[20px]" />
-            </div>
+        {data.votes.filmCritics ? (
+          <div className="mt-[10px] text-[13px] text-[#00000099] cursor-pointer hover:text-[#f50]">
+            {data.votes.filmCritics} рецензий
           </div>
+        ) : (
+          ""
+        )}
 
-          {actors &&
-            actors.slice(0, 10).map((item, index) => (
-              <span
-                className="text-[13px] text-black cursor-pointer hover:text-[#f50]"
-                key={index}
-              >
-                {item.name}
-              </span>
-            ))}
+        {actors && actors.length ? (
+          <div className="flex flex-col mt-[150px] gap-2">
+            <div className="flex items-center mb-[10px]">
+              <h2 className=" text-[15px] font-bold leading-[20px]">
+                В главных ролях
+              </h2>
+              <div className="flex items-center -mb-[2px]">
+                <ChevronRight className="w-[20px] h-[20px] leading-[20px]" />
+              </div>
+            </div>
 
-          <span className="text-[13px] cursor-pointer text-[#f50]">
-            {actors.length > 0 && actors.length} актеров
-          </span>
-        </div>
+            {actors &&
+              actors.slice(0, 10).map((item, index) => (
+                <span
+                  className="text-[13px] text-black cursor-pointer hover:text-[#f50]"
+                  key={index}
+                >
+                  {item.name}
+                </span>
+              ))}
+
+            <span className="text-[13px] cursor-pointer text-[#f50]">
+              {actors.length > 0 && actors.length} актеров
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

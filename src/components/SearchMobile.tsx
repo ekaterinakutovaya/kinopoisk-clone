@@ -11,6 +11,10 @@ type SearchMobileProps = {
 };
 
 export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
+  const handleLinkClick = () => {
+    setSearchOpen(false);
+  };
+
   return (
     <div className="fixed w-full top-0 left-0 bg-white h-full flex flex-col">
       <div className="w-full h-header-height bg-[#444] flex items-center justify-between px-[24px]">
@@ -38,8 +42,9 @@ export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
           {data.length ? (
             data.map((item) => (
               <Link
-                to="#"
+                to={`/movie/${item.id}`}
                 key={item.id}
+                onClick={handleLinkClick}
                 className="w-full min-h-[36px] py-[10px] px-[16px] flex items-start justify-between"
               >
                 <div className="flex items-center">

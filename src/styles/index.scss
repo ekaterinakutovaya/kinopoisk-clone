@@ -270,14 +270,6 @@ aside {
   opacity: 1;
 }
 
-.trailer-wrapper {
- &:hover {
-  button {
-    opacity: 1;
-  }
- }
-}
-
 .clip-text {
   background: linear-gradient(165deg,#ffd25e 16.44%,#b59646 63.42%);
   //background-clip: border-box;

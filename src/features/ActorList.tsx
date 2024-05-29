@@ -1,17 +1,22 @@
-import poster from "../../public/images/poster001.webp";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { useEffect, useRef } from "react";
 import { NavigationOptions } from "swiper/types";
 import { chunkArray } from "@/lib/utils.ts";
+import { Person } from "@/types.ts";
 
-export const ActorList = () => {
-  const list = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-  ];
+type Props = {
+  actors: Person[] | null;
+};
 
-  const chunkedList = chunkArray(list, 4);
+export const ActorList = ({ actors }: Props) => {
+  if (!actors) {
+    return null;
+  }
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
+  const chunkedList = chunkArray(actors, 4);
 
   const swiperPrevRef = useRef(null);
   const swiperNextRef = useRef(null);
@@ -45,7 +50,6 @@ export const ActorList = () => {
           modules={[Navigation, FreeMode]}
           slidesPerView={4}
           spaceBetween={15}
-          onSlideChange={() => console.log("slide change")}
           onSwiper={handleSwiperInit}
           className="w-full"
           navigation={{
@@ -69,20 +73,22 @@ export const ActorList = () => {
               className="max-w-[229px] lg:w-auto lg:h-[294px]"
             >
               <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-                {chunk.map((item, index) => (
+                {chunk.map((item: Person, index) => (
                   <div key={index} className="inline-block">
                     <div className="flex items-center gap-4">
-                      <div className="w-[40px] h-[60px] overflow-hidden">
+                      <div className="min-w-[40px] min-h-[60px] max-w-[40px] max-h-[60px] overflow-hidden">
                         <img
-                          src={poster}
-                          alt={`Actor ${item}`}
+                          src={item.photo}
+                          alt=""
                           className="w-full h-full object-cover"
                         />
                       </div>
 
                       <div>
-                        <div className="font-bold">Actor {item}</div>
-                        <div className="text-sm text-gray-500">Role {item}</div>
+                        <div className="font-bold">{item.name}</div>
+                        <div className="max-w-[150px] text-sm text-gray-500 truncate">
+                          <span>{item.description}</span>
+                        </div>
                       </div>
                     </div>
                   </div>

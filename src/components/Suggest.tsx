@@ -19,7 +19,7 @@ export const Suggest = ({ data }: Props) => {
           {data.length ? (
             data.map((item) => (
               <Link
-                to="#"
+                to={`/movie/${item.id}`}
                 key={item.id}
                 className="w-full min-h-[36px] py-[10px] px-[16px] flex items-start justify-between hover:bg-gray-50"
               >

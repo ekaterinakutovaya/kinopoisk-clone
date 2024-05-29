@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Eye } from "lucide-react";
 import { GoBlocked } from "react-icons/go";
+import { Movie } from "@/types.ts";
 
 type Props = {
   item: Movie;
@@ -8,9 +9,9 @@ type Props = {
 const MovieCard = ({ item }: Props) => {
   return (
     <Link to={`/movie/${item.id}`}>
-      <div className="movie-wrapper w-[128px] lg:w-[150px] max-w-[150px] lg:min-h-[289px] lg:h-auto transition-all duration-300">
+      <div className="movie-wrapper w-[128px] lg:w-[150px] max-w-[150px] lg:min-h-[289px] lg:h-auto transition-all duration-300 ">
         <div className="poster-wrapper w-full h-[192px] lg:h-[225px] relative">
-          <div className="poster-image flex justify-center items-center w-full h-full bg-[#f4f4f4] overflow-hidden">
+          <div className="poster-image flex justify-center items-center w-full h-full bg-[#f4f4f4] overflow-hidden border border-solid border-custom-gray">
             <img
               src={item?.poster?.previewUrl}
               alt=""

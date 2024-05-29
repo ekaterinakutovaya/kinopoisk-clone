@@ -1,19 +1,32 @@
-import poster from "../../public/images/poster001.webp";
 import { BookmarkPlus, Ellipsis, FolderPlus, Star } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button.tsx";
-import { IoPlaySharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { ActorList } from "@/features/ActorList.tsx";
 import { CreatorList } from "@/features/CreatorList.tsx";
 import { MovieRaitingsBlockMobile } from "@/features/MovieRaitingsBlockMobile.tsx";
-// import { Button } from "@/components/ui/button.tsx";
-// import { IoPlaySharp } from "react-icons/io5";
-// import { Link } from "react-router-dom";
-// import { BookmarkPlus, ChevronRight, Ellipsis, FolderPlus } from "lucide-react";
+import { MovieDetails } from "@/types.ts";
+import { formatDuration, formatNumberK } from "@/lib/utils.ts";
+import { IoPlaySharp } from "react-icons/io5";
+import { Button } from "@/components/ui/button.tsx";
 
-export const MovieDescMobile = () => {
+type Props = {
+  data: MovieDetails;
+};
+
+export const MovieDescMobile = ({ data }: Props) => {
   const [isTruncated, setIsTruncated] = useState(true);
+
+  const directors = data.persons.filter(
+    (person) => person.enProfession === "director",
+  );
+  const producers = data.persons.filter(
+    (person) => person.enProfession === "producer",
+  );
+
+  const creators = directors.concat(producers);
+  const actors = data.persons.filter(
+    (person) => person.enProfession === "actor",
+  );
 
   const truncateHandler = () => {
     setIsTruncated(!isTruncated);
@@ -22,25 +35,59 @@ export const MovieDescMobile = () => {
   return (
     <div className="lg:hidden w-full flex flex-col justify-center text-center gap-[30px] border-bottom py-[20px]">
       <div className="w-[220px] h-[330px] overflow-hidden my-0 mx-auto">
-        <img src={poster} alt="" className="w-full h-full object-cover" />
+        <img
+          src={data?.poster?.url}
+          alt=""
+          className="w-full h-full object-cover"
+        />
       </div>
 
       <div>
         <h1 className="text-[28px] leading-[32px] font-bold tracking-neg-0.5 mb-4">
-          Рик и Морти
+          {data.name && data.name}
         </h1>
         <div className="text-[13px] flex justify-center gap-1">
-          <span className="text-[#3bb33b] font-bold">7.6</span>
-          <span className="text-[#00000099]">615K</span>
-          <span className="text-black">Cruella</span>
-        </div>
-        <div className="text-[13px] flex justify-center gap-1">
+          {data.rating.kp >= 9 ? (
+            <div className="font-bold clip-text">
+              {data.rating.kp.toFixed(1)}
+            </div>
+          ) : data.rating.kp < 7 ? (
+            <div className="font-bold text-[#777777]">
+              {data.rating.kp.toFixed(1)}
+            </div>
+          ) : (
+            <div className="font-bold text-[#3bb33b]">
+              {data.rating.kp.toFixed(1)}
+            </div>
+          )}
           <span className="text-[#00000099]">
-            2021, комедия, криминал, драма
+            {formatNumberK(data.votes.kp)}
+          </span>
+          <span className="text-black">
+            {data.alternativeName && data.alternativeName}
           </span>
         </div>
         <div className="text-[13px] flex justify-center gap-1">
-          <span className="text-[#00000099]">США, 2ч 14 мин, 12+</span>
+          <span className="text-[#00000099]">
+            <span>{data.year},&nbsp;</span>
+            {data.genres &&
+              data.genres.map((item, index) => (
+                <span className="" key={index}>
+                  {item.name}
+                  {index < data.genres.length - 1 && ", "}
+                </span>
+              ))}
+          </span>
+        </div>
+        <div className="text-[13px] flex justify-center gap-1">
+          <span className="text-[#00000099]">
+            {data.countries &&
+              data.countries.map((item) => item.name).join(", ")}
+            ,&nbsp;
+            {data.movieLength &&
+              `${data.movieLength} мин. / ${formatDuration(data.movieLength)}`}
+            {data.ageRating ? `, ${data.ageRating}+` : ""}
+          </span>
         </div>
       </div>
 
@@ -63,48 +110,48 @@ export const MovieDescMobile = () => {
         </div>
       </div>
 
-      <div className="description text-start">
-        <p className="text-[18px]">
-          Великобритания, 1960-е годы. Эстелла была необычным ребёнком,
-          и особенно трудно ей было мириться со всякого рода несправедливостью.
-          Вылетев из очередной школы, она с мамой отправляется в Лондон.
-          По дороге они заезжают в особняк известной модельерши по имени
-          Баронесса, где в результате ужасного несчастного случая мама погибает.
-          Добравшись до Лондона, Эстелла знакомится с двумя
-          мальчишками — уличными мошенниками Джаспером и Хорасом.
-        </p>
+      {data.description ? (
+        <div className="description text-start">
+          <p
+            className={`text-[15px] mt-4 ${isTruncated ? "truncate-3-lines" : ""}`}
+          >
+            {data.description}
+          </p>
 
-        <p
-          className={`text-[15px] mt-4 ${isTruncated ? "truncate-3-lines" : ""}`}
-        >
-          10 лет спустя та же компания промышляет на улицах британской столицы
-          мелким воровством, но Эстелла никак не может оставить мечту сделать
-          карьеру в мире моды. Хитростью устроившись в фешенебельный универмаг,
-          девушка привлекает внимание Баронессы, и та берёт её к себе в штат
-          дизайнеров.
-        </p>
-
-        <span className="text-[#f50] font-bold mt-2" onClick={truncateHandler}>
-          {isTruncated ? "Полное описание" : "Свернуть"}
-        </span>
-      </div>
+          <span
+            className="text-[#f50] font-bold mt-2"
+            onClick={truncateHandler}
+          >
+            {isTruncated ? "Полное описание" : "Свернуть"}
+          </span>
+        </div>
+      ) : (
+        ""
+      )}
 
       <div className="w-full text-start mb-[24px]">
-        <div className="trailer-wrapper w-full h-[170px] overflow-hidden mb-[8px] relative cursor-pointer ">
-          <img src={poster} alt="" className="w-full h-full object-cover" />
+        <h3 className="font-bold mt-2 mb-4">Трейлер</h3>
+        <div className="trailer-wrapper bg-[#0b1321] w-full h-[170px] overflow-hidden mb-[8px] relative cursor-pointer ">
+          <Button
+            variant="play"
+            size="roundSm"
+            className="opacity-1 absolute top-[50%] left-[50%] transform -translate-y-1/2 -translate-x-1/2 z-2"
+          >
+            <IoPlaySharp className="w-[24px] h-[24px]" />
+          </Button>
         </div>
 
         <Link to="#" className="mb-[4px]">
-          <h3 className="text-[15px] font-semibold">
-            Трейлер (сезон 5; русский язык)
-          </h3>
+          <h3 className="text-[15px] font-semibold">Трейлер (русский язык)</h3>
         </Link>
-        <span className="text-[13px] text-[#00000099]">21 июня 2021</span>
+        <span className="text-[13px] text-[#00000099]">
+          {data.year && data.year}
+        </span>
       </div>
+      {actors && actors.length ? <ActorList actors={actors} /> : ""}
 
-      <ActorList />
-      <CreatorList />
-      <MovieRaitingsBlockMobile />
+      <CreatorList creators={creators} />
+      <MovieRaitingsBlockMobile data={data} />
     </div>
   );
 };

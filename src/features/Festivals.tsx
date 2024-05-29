@@ -45,7 +45,6 @@ export const Festivals = () => {
             modules={[Navigation, FreeMode]}
             slidesPerView={4}
             spaceBetween={15}
-            onSlideChange={() => console.log("slide change")}
             onSwiper={handleSwiperInit}
             className="w-full"
             navigation={{

@@ -104,7 +104,7 @@ interface Country {
   name: string;
 }
 
-interface Person {
+export interface Person {
   id: number;
   photo: string;
   name: string;
