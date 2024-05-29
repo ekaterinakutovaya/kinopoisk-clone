@@ -5,7 +5,7 @@ import { festivals } from "@/constants.tsx";
 
 import "swiper/css/navigation";
 
-import { Navigation } from "swiper/modules";
+import { FreeMode, Navigation } from "swiper/modules";
 import { useEffect, useRef } from "react";
 import { NavigationOptions } from "swiper/types";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
@@ -34,13 +34,15 @@ export const Festivals = () => {
 
   return (
     <div>
-      <div className="hidden lg:block mt-[30px] max-w-[926px] min-h-[349px]">
-        <h2 className="mb-[16px] text-[22px] font-bold leading-[28px]">
+      <div className="lg:mt-[30px] max-w-[926px] min-h-[349px]">
+        <h2 className="mb-[16px] text-[18px] leading-[24px] lg:text-[22px] font-bold lg:leading-[28px]">
           Каннский кинофестиваль кончился, но мы его продлеваем!
         </h2>
         <div className="relative">
           <Swiper
-            modules={[Navigation]}
+            loop={false}
+            freeMode={true}
+            modules={[Navigation, FreeMode]}
             slidesPerView={4}
             spaceBetween={15}
             onSlideChange={() => console.log("slide change")}
@@ -50,9 +52,22 @@ export const Festivals = () => {
               prevEl: swiperPrevRef.current,
               nextEl: swiperNextRef.current,
             }}
+            breakpoints={{
+              0: {
+                slidesPerView: "auto",
+                spaceBetween: 8,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 28,
+              },
+            }}
           >
             {festivals.map((item) => (
-              <SwiperSlide key={item.id}>
+              <SwiperSlide
+                key={item.id}
+                className="max-w-[229px] lg:w-auto lg:h-[294px]"
+              >
                 <FestivalCard img={item.img} />
               </SwiperSlide>
             ))}

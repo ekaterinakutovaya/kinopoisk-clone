@@ -1,34 +1,15 @@
-import { IoSearch } from "react-icons/io5";
-import { Button } from "@/components/ui/button.tsx";
-import { BadgeCheck, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { BadgeCheck } from "lucide-react";
 import { Loader } from "@/components/Loader.tsx";
+import { Link } from "react-router-dom";
 
-type SearchMobileProps = {
+type Props = {
   data: Movie[];
-  setSearchOpen: (open: boolean) => void;
 };
 
-export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
+export const Suggest = ({ data }: Props) => {
   return (
-    <div className="fixed w-full top-0 left-0 bg-white h-full flex flex-col">
-      <div className="w-full h-header-height bg-[#444] flex items-center justify-between px-[24px]">
-        <IoSearch className="min-w-[24px] min-h-[24px] text-white opacity-60" />
-        <input
-          type="text"
-          className="w-full block py-[8px] pl-[16px] text-[15px] text-white"
-        />
-        <Button
-          variant="ghost"
-          size="icon"
-          className="w-auto h-auto"
-          onClick={() => setSearchOpen(false)}
-        >
-          <X className="min-w-[24px] min-h-[24px] text-white opacity-60" />
-        </Button>
-      </div>
-
-      <div className="suggest-wrapper w-full bg-white pt-[16px] flex-1 overflow-y-auto">
+    <div className="absolute w-[396px] top-[38px] left-0 bg-white rounded-[8px]">
+      <div className="w-full bg-white pt-[16px] rounded-[8px]">
         <h3 className="text-[13px] text-[#00000099] pb-[10px] pl-[16px]">
           Входит в топ 10 за месяц
         </h3>
@@ -39,7 +20,7 @@ export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
               <Link
                 to="#"
                 key={item.id}
-                className="w-full min-h-[36px] py-[10px] px-[16px] flex items-start justify-between"
+                className="w-full min-h-[36px] py-[10px] px-[16px] flex items-start justify-between hover:bg-gray-50"
               >
                 <div className="flex items-center">
                   <div className="w-[32px] h-[48px] overflow-hidden mr-[14px]">
@@ -50,7 +31,7 @@ export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
                     />
                   </div>
                   <div>
-                    <h4 className="text-[15px] font-bold leading-[20px] ">
+                    <h4 className="text-[15px] font-bold leading-[20px] text-black">
                       {item.name && item.name}
                     </h4>
 

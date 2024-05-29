@@ -26,7 +26,7 @@ export const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  // top-[calc(72px-var(--header-height))]
+
   return (
     <header
       className={`fixed top-0 z-10 w-full h-header-height bg-header-image bg-cover bg-center transition-top duration-300 ${scrolled ? "scrolled" : ""}`}

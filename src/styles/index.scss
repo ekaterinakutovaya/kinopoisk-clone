@@ -151,6 +151,15 @@ body {
   border: 1px dotted white;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
+.suggest-wrapper {
+  flex: 1;
+  overflow-y: auto;
+}
+
 header {
   top: var(--header-height); /* initial position */
 }
@@ -224,4 +233,35 @@ aside {
 }
 .swiper-button-next.swiper-button-disabled {
   opacity: 0;
+}
+
+.movie-wrapper {
+  transition: all 0.2s ease;
+  &:hover {
+    transition: all 0.2s ease;
+    .movie-title {
+      color: #f50;
+    }
+
+    .poster-image {
+      filter: brightness(90%);
+    }
+
+    .action-icons {
+      opacity: 1;
+    }
+  }
+}
+
+.action-icons {
+  opacity: 0; /* Start with opacity 0 */
+  transition: opacity 0.2s ease;
+}
+
+.action-icon {
+  transition: opacity 0.2s ease;
+}
+
+.action-icon:hover {
+  opacity: 1;
 }
