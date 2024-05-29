@@ -1,5 +1,6 @@
-import MovieDesc from "@/features/MovieDesc.tsx";
 import { MovieRaitingsBlock } from "@/features/MovieRaitingsBlock.tsx";
+import { MovieDescMobile } from "@/features/MovieDescMobile.tsx";
+import { MovieDesc } from "@/features/MovieDesc.tsx";
 
 const MoviePage = () => {
   // useEffect(() => {
@@ -7,12 +8,13 @@ const MoviePage = () => {
   // }, []);
 
   return (
-    <div className="w-full min-h-desktop-body-min-height mt-[150px]">
+    <div className="w-full min-h-desktop-body-min-height lg:mt-[150px]">
       <div className="container flex-1 px-[16px] lg:px-[10px] bg-white">
         <MovieDesc />
-        <MovieRaitingsBlock />
+        <MovieDescMobile />
+        {/*<MovieRaitingsBlock />*/}
 
-        <div className="h-[3000px]"></div>
+        {/*<div className="h-[3000px]"></div>*/}
       </div>
     </div>
   );

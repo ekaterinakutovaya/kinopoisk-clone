@@ -4,9 +4,9 @@ import { IoPlaySharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { BookmarkPlus, ChevronRight, Ellipsis, FolderPlus } from "lucide-react";
 
-const MovieDesc = () => {
+export const MovieDesc = () => {
   return (
-    <div className="max-w-[1200px] my-0 mx-auto pt-[40px] pb-[60px] flex justify-between gap-[30px] border-bottom">
+    <div className="hidden lg:flex max-w-[1200px] my-0 mx-auto pt-[40px] pb-[60px] justify-between gap-[30px] border-bottom">
       <div className="left-column w-full max-w-[302px]">
         {/* Poster */}
         <div className="w-full h-[430px] overflow-hidden mb-[24px]">
@@ -277,5 +277,3 @@ const MovieDesc = () => {
     </div>
   );
 };
-
-export default MovieDesc;

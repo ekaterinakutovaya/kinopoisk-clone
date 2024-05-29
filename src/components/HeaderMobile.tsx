@@ -50,8 +50,8 @@ export const HeaderMobile = () => {
   }, [menuOpen, searchOpen]);
 
   return (
-    <header className="bg-[#141414] sticky top-0 z-10">
-      <div className="h-header-height container flex items-center gap-x-4 px-[16px]">
+    <header className="bg-[#141414]  w-full">
+      <div className="h-header-height container flex items-center gap-x-4 px-[16px] fixed top-0 z-10 bg-[#141414]  w-full">
         <Button
           variant="ghost"
           size="icon"
@@ -90,7 +90,7 @@ export const HeaderMobile = () => {
         )}
 
         <nav
-          className={`fixed w-full h-0 bg-[#141414] overflow-hidden border-t shadow-inset-custom top-[52px] left-0 right-0 flex flex-col gap-6  transition-all duration-300 ${menuOpen ? "nav-is-open" : ""}`}
+          className={`fixed z-10 w-full h-0 bg-[#141414] overflow-hidden border-t shadow-inset-custom top-[52px] left-0 right-0 flex flex-col gap-6  transition-all duration-300 ${menuOpen ? "nav-is-open" : ""}`}
         >
           {mainNavigation.map((item, index) => (
             <NavLink
@@ -109,7 +109,7 @@ export const HeaderMobile = () => {
         </nav>
       </div>
 
-      <div className="w-full h-header-height mt-[header-height] border-t shadow-inset-custom px-[24px] flex items-center gap-[16px] overflow-x-auto no-scrollbar">
+      <div className="w-full h-header-height mt-[52px] border-t shadow-inset-custom px-[24px] flex items-center gap-[16px] overflow-x-auto no-scrollbar">
         <Button className="h-[32px] text-[11px] font-bold whitespace-nowrap">
           Смотреть кино бесплатно
         </Button>

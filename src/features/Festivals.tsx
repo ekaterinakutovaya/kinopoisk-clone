@@ -34,7 +34,7 @@ export const Festivals = () => {
 
   return (
     <div>
-      <div className="lg:mt-[30px] max-w-[926px] min-h-[349px]">
+      <div className="mt-[15px] lg:mt-[30px] max-w-[926px] min-h-[349px]">
         <h2 className="mb-[16px] text-[18px] leading-[24px] lg:text-[22px] font-bold lg:leading-[28px]">
           Каннский кинофестиваль кончился, но мы его продлеваем!
         </h2>
