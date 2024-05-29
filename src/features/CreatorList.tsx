@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import { useEffect, useRef } from "react";
-import { NavigationOptions } from "swiper/types";
+import { MutableRefObject, useEffect, useRef } from "react";
+import { NavigationOptions, Swiper as SwiperType } from "swiper/types";
 import { chunkArray } from "@/lib/utils.ts";
 import { Person } from "@/types.ts";
 
@@ -15,12 +15,14 @@ export const CreatorList = ({ creators }: Props) => {
     return null;
   }
 
-  const chunkedList = chunkArray(creators, 2);
-
-  const swiperPrevRef = useRef(null);
-  const swiperNextRef = useRef(null);
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const swiperRef = useRef<any>(null);
+  const swiperRef: MutableRefObject<SwiperType | null> = useRef(null);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const swiperPrevRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const swiperNextRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+
+  const chunkedList = chunkArray(creators, 2);
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
@@ -29,7 +31,7 @@ export const CreatorList = ({ creators }: Props) => {
     }
   }, []);
 
-  const handleSwiperInit = (swiper: any) => {
+  const handleSwiperInit = (swiper: SwiperType) => {
     swiperRef.current = swiper;
     if (swiper.params.navigation) {
       const navigation = swiper.params.navigation as NavigationOptions;

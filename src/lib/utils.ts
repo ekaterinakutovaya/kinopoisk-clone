@@ -5,7 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const chunkArray = (array: never[], chunkSize: number): never[][] => {
+export const chunkArray = <T>(array: T[], chunkSize: number): T[][] => {
   if (!Array.isArray(array)) {
     throw new Error("Input is not an array");
   }
@@ -13,7 +13,7 @@ export const chunkArray = (array: never[], chunkSize: number): never[][] => {
     throw new Error("Chunk size must be greater than 0");
   }
 
-  const chunks = [];
+  const chunks: T[][] = [];
   for (let i = 0; i < array.length; i += chunkSize) {
     chunks.push(array.slice(i, i + chunkSize));
   }

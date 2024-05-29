@@ -2,15 +2,15 @@ import { ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import MovieCard from "@/components/MovieCard.tsx";
-import { useEffect, useRef, useState } from "react";
-import { NavigationOptions } from "swiper/types";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
+import { Swiper as SwiperType, NavigationOptions } from "swiper/types";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import axios from "axios";
 
 export const Recommends = () => {
-  const swiperPrevRef = useRef(null);
-  const swiperNextRef = useRef(null);
-  const swiperRef = useRef<never>(null);
+  const swiperRef: MutableRefObject<SwiperType | null> = useRef(null);
+  const swiperPrevRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const swiperNextRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
   const [results, setResults] = useState([]);
 
@@ -33,16 +33,12 @@ export const Recommends = () => {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     if (swiperRef.current && swiperRef.current.navigation) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
       swiperRef.current.navigation.update();
     }
   }, []);
 
-  const handleSwiperInit = (swiper: any) => {
+  const handleSwiperInit = (swiper: SwiperType) => {
     swiperRef.current = swiper;
     if (swiper.params.navigation) {
       const navigation = swiper.params.navigation as NavigationOptions;

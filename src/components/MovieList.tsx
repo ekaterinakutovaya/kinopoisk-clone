@@ -12,10 +12,10 @@ export const MovieList = () => {
 
       <div className="list-wrapper flex flex-col gap-8 pb-[10px] h-[387px] overflow-y-scroll">
         {data.length ? (
-          data.map((item, i) => (
+          data.map((item) => (
             <Link
               to="#"
-              key={i}
+              key={item}
               className="w-full min-h-[36px] py-[10px] px-[16px] flex items-start justify-between hover:bg-gray-50"
             >
               <div className="flex items-center">
