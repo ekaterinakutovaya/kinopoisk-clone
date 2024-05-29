@@ -1,22 +1,54 @@
-import poster from "../../public/images/poster001.webp";
 import { Button } from "@/components/ui/button.tsx";
 import { IoPlaySharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { BookmarkPlus, ChevronRight, Ellipsis, FolderPlus } from "lucide-react";
+import { MovieDetails } from "@/types.ts";
+import { formatDuration, formatNumberWithSpaces } from "@/lib/utils.ts";
 
-export const MovieDesc = () => {
+type Props = {
+  data: MovieDetails;
+};
+
+export const MovieDesc = ({ data }: Props) => {
+  const directors = data.persons.filter(
+    (person) => person.enProfession === "director",
+  );
+  const producers = data.persons.filter(
+    (person) => person.enProfession === "producer",
+  );
+  const composers = data.persons.filter(
+    (person) => person.enProfession === "composer",
+  );
+  const designers = data.persons.filter(
+    (person) => person.enProfession === "designer",
+  );
+  const editors = data.persons.filter(
+    (person) => person.enProfession === "editor",
+  );
+  const actors = data.persons.filter(
+    (person) => person.enProfession === "actor",
+  );
+
   return (
     <div className="hidden lg:flex max-w-[1200px] my-0 mx-auto pt-[40px] pb-[60px] justify-between gap-[30px] border-bottom">
       <div className="left-column w-full max-w-[302px]">
         {/* Poster */}
-        <div className="w-full h-[430px] overflow-hidden mb-[24px]">
-          <img src={poster} alt="" className="w-full h-full object-cover" />
+        <div className="w-full h-[430px] overflow-hidden mb-[24px] bg-[#f2f2f2] border border-solid border-[#f2f2f2]">
+          <img
+            src={data?.poster?.url}
+            alt=""
+            className="w-full h-full object-cover"
+          />
         </div>
 
         {/*  Trailer  */}
         <div className="w-full mb-[24px]">
-          <div className="trailer-wrapper w-full h-[170px] overflow-hidden mb-[8px] relative cursor-pointer ">
-            <img src={poster} alt="" className="w-full h-full object-cover" />
+          <div className="trailer-wrapper w-full h-[170px] overflow-hidden mb-[8px] relative cursor-pointer bg-[#f2f2f2] border border-solid border-[#f2f2f2]">
+            <img
+              src={data?.poster?.url}
+              alt=""
+              className="w-full h-full object-cover"
+            />
 
             <Button
               variant="play"
@@ -29,10 +61,12 @@ export const MovieDesc = () => {
 
           <Link to="#" className="mb-[4px]">
             <h3 className="text-[15px] font-semibold">
-              Трейлер (сезон 5; русский язык)
+              Трейлер (русский язык)
             </h3>
           </Link>
-          <span className="text-[13px] text-[#00000099]">21 июня 2021</span>
+          <span className="text-[13px] text-[#00000099]">
+            {data.year && data.year}
+          </span>
         </div>
 
         {/* Add folder button */}
@@ -46,14 +80,12 @@ export const MovieDesc = () => {
 
       <div className="central-column flex-1">
         <div>
-          <h1 className="text-[40px] leading-[48px] font-bold tracking-neg-0.5">
-            Рик и Морти
+          <h1 className="text-[40px] leading-[48px] font-bold tracking-neg-0.5 mb-3">
+            {data.name && data.name}&nbsp;({data.year && data.year})
           </h1>
-          <h2 className="text-[40px] leading-[48px] font-bold tracking-neg-0.5 mb-3">
-            (сериал 2013 - ...)
-          </h2>
           <div className="text-[18px] tracking-neg-0.2 text-[#00000099] mb-6">
-            Rick and Morty 18+
+            {data.alternativeName && data.alternativeName}&nbsp;
+            {data.ageRating && data.ageRating}+
           </div>
         </div>
 
@@ -70,95 +102,145 @@ export const MovieDesc = () => {
         {/* About */}
         <div className="mt-[40px]">
           <h2 className="mb-[16px] text-[22px] font-bold leading-[28px]">
-            О сериале
+            {data.isSeries ? "О сериале" : "О фильме"}
           </h2>
           <div className="grid grid-cols-[160px_1fr] gap-x-2 gap-y-4">
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Год производства
             </div>
             <div className="text-[13px] leading-[18px] text-black">
-              <span className="cursor-pointer hover:text-[#f50]">2013</span> (
               <span className="cursor-pointer hover:text-[#f50]">
-                10 сезонов
+                {data.year && data.year}
               </span>
-              )
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Страна
             </div>
             <div className="text-[13px] leading-[18px] text-black">
-              <span className="cursor-pointer hover:text-[#f50]">США</span>
+              <span className="cursor-pointer hover:text-[#f50]">
+                {data.countries &&
+                  data.countries.map((item) => item.name).join(", ")}
+              </span>
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Жанр
             </div>
-            <div className="text-[13px] leading-[18px] text-black">
-              <span className="cursor-pointer hover:text-[#f50]">
-                мультфильм
-              </span>
+            <div className="text-[13px] leading-[18px] text-black truncate">
+              {data.genres &&
+                data.genres.map((item, index) => (
+                  <span
+                    className="cursor-pointer hover:text-[#f50]"
+                    key={index}
+                  >
+                    {item.name}
+                    {index < data.genres.length - 1 && ", "}
+                  </span>
+                ))}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Слоган
             </div>
             <div className="text-[13px] leading-[18px] text-[#00000099]">
-              «Science makes sense, family doesn't»
+              {data.slogan ? data.slogan : "-"}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Режиссер
             </div>
-            <div className="text-[13px] leading-[18px] text-black">
-              <span className="cursor-pointer hover:text-[#f50]">
-                Уэсли Арчер, ...
-              </span>
+            <div className="text-[13px] leading-[18px] text-black truncate">
+              {directors &&
+                directors.map((item, index) => (
+                  <span
+                    className="cursor-pointer hover:text-[#f50]"
+                    key={index}
+                  >
+                    {item.name}
+                    {index < directors.length - 1 && ","}
+                  </span>
+                ))}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Сценарий
             </div>
-            <div className="text-[13px] leading-[18px] text-black">
-              <span className="cursor-pointer hover:text-[#f50]">
-                Дэн Хармон, ...
-              </span>
+            <div className="text-[13px] leading-[18px] text-black truncate">
+              {directors &&
+                directors.map((item, index) => (
+                  <span
+                    className="cursor-pointer hover:text-[#f50]"
+                    key={index}
+                  >
+                    {item.name}
+                    {index < directors.length - 1 && ", "}
+                  </span>
+                ))}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Продюсер
             </div>
-            <div className="text-[13px] leading-[18px] text-black">
-              <span className="cursor-pointer hover:text-[#f50]">
-                Дэн Хармон, ...
-              </span>
+            <div className="text-[13px] leading-[18px] text-black truncate">
+              {producers &&
+                producers.map((item, index) => (
+                  <span
+                    className="cursor-pointer hover:text-[#f50]"
+                    key={index}
+                  >
+                    {item.name}
+                    {index < producers.length - 1 && ", "}
+                  </span>
+                ))}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Композитор
             </div>
-            <div className="text-[13px] leading-[18px] text-black">
-              <span className="cursor-pointer hover:text-[#f50]">
-                Дэн Хармон, ...
-              </span>
+            <div className="text-[13px] leading-[18px] text-black truncate">
+              {composers &&
+                composers.map((item, index) => (
+                  <span
+                    className="cursor-pointer hover:text-[#f50]"
+                    key={index}
+                  >
+                    {item.name}
+                    {index < composers.length - 1 && ", "}
+                  </span>
+                ))}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Художник
             </div>
-            <div className="text-[13px] leading-[18px] text-black">
-              <span className="cursor-pointer hover:text-[#f50]">
-                Дэн Хармон, ...
-              </span>
+            <div className="text-[13px] leading-[18px] text-black truncate">
+              {designers &&
+                designers.map((item, index) => (
+                  <span
+                    className="cursor-pointer hover:text-[#f50]"
+                    key={index}
+                  >
+                    {item.name}
+                    {index < designers.length - 1 && ", "}
+                  </span>
+                ))}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               Монтаж
             </div>
-            <div className="text-[13px] leading-[18px] text-black">
-              <span className="cursor-pointer hover:text-[#f50]">
-                Дэн Хармон, ...
-              </span>
+            <div className="text-[13px] leading-[18px] text-black truncate">
+              {editors &&
+                editors.map((item, index) => (
+                  <span
+                    className="cursor-pointer hover:text-[#f50]"
+                    key={index}
+                  >
+                    {item.name}
+                    {index < editors.length - 1 && ", "}
+                  </span>
+                ))}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
@@ -166,7 +248,7 @@ export const MovieDesc = () => {
             </div>
             <div className="text-[13px] leading-[18px] text-[#00000099]">
               <span className="cursor-pointer hover:text-[#f50]">
-                8 сентября 2014
+                {data.year && data.year}
               </span>
             </div>
 
@@ -175,7 +257,7 @@ export const MovieDesc = () => {
             </div>
             <div className="text-[13px] leading-[18px] text-black">
               <span className="cursor-pointer hover:text-[#f50]">
-                2 декабря 2013, ...
+                {data.year && data.year}
               </span>
             </div>
 
@@ -183,10 +265,7 @@ export const MovieDesc = () => {
               Цифровой релиз
             </div>
             <div className="text-[13px] leading-[18px] text-[#00000099]">
-              5 февраля 2022,
-              <span className="cursor-pointer text-black hover:text-[#f50]">
-                «Max»
-              </span>
+              {data.year && data.year}
             </div>
 
             <div className="text-[13px] leading-[18px] text-[#00000099]">
@@ -194,7 +273,7 @@ export const MovieDesc = () => {
             </div>
             <div className="text-[13px] leading-[18px] text-black">
               <span className="font-bold py-[3px] px-[4px] border border-solid border-black">
-                18+
+                {data.ageRating && data.ageRating}+
               </span>
             </div>
 
@@ -202,7 +281,8 @@ export const MovieDesc = () => {
               Время
             </div>
             <div className="text-[13px] leading-[18px] text-[#00000099]">
-              23 мин
+              {data.movieLength &&
+                `${data.movieLength} мин. / ${formatDuration(data.movieLength)}`}
             </div>
           </div>
         </div>
@@ -211,39 +291,54 @@ export const MovieDesc = () => {
       {/* Right */}
       <div className="right-column min-w-[240px] max-w-[240px]">
         <div className="rating-value flex items-center gap-[20px]">
-          {/*<div className="text-[32px] font-bold leading-[40px] text-[#3bb33b]">*/}
-          {/*  7.6*/}
-          {/*</div>*/}
-          <div className="text-[32px] font-bold leading-[40px] clip-text">
-            9.0
-          </div>
-          <div className="rating-badge pt-[4px]">
-            <div className="flex items-center gap-1">
-              <span className="icon-left"></span>
-              <div>
-                <span className="text-center block clip-text text-[15px] font-bold leading-[18px]">
-                  ТОП 250
-                </span>
-                <span className="block clip-text text-[15px] font-bold leading-[18px]">
-                  24 место
-                </span>
-              </div>
-              <span className="icon-right"></span>
+          {data.rating.kp >= 8 ? (
+            <div className="text-[32px] font-bold leading-[40px] clip-text">
+              {data.rating.kp.toFixed(1)}
             </div>
-          </div>
+          ) : data.rating.kp >= 6 && data.rating.kp < 7 ? (
+            <div className="text-[32px] font-bold leading-[40px] text-[#777777]">
+              {data.rating.kp.toFixed(1)}
+            </div>
+          ) : data.rating.kp < 5 ? (
+            <div className="text-[32px] font-bold leading-[40px] text-[#777777]">
+              {data.rating.kp.toFixed(1)}
+            </div>
+          ) : (
+            <div className="text-[32px] font-bold leading-[40px] text-[#3bb33b]">
+              {data.rating.kp.toFixed(1)}
+            </div>
+          )}
+          {data.rating.kp >= 8 && (
+            <div className="rating-badge pt-[4px]">
+              <div className="flex items-center gap-1">
+                <span className="icon-left"></span>
+                <div>
+                  <span className="text-center block clip-text text-[15px] font-bold leading-[18px]">
+                    ТОП 250
+                  </span>
+                  <span className="block clip-text text-[15px] font-bold leading-[18px]">
+                    24 место
+                  </span>
+                </div>
+                <span className="icon-right"></span>
+              </div>
+            </div>
+          )}
         </div>
         <div className="mt-[10px] text-[13px] text-[#00000099]">
-          909 321 оценка
+          {data.votes.kp && formatNumberWithSpaces(data.votes.kp)} оценок
         </div>
 
         <div className="w-full flex justify-center mt-[20px]">
           <Button variant="gray" size="full">
-            <div className="text-[15px] font-bold">Оценить сериал</div>
+            <div className="text-[15px] font-bold">
+              {data.isSeries ? "Оценить сериал" : "Оценить фильм"}
+            </div>
           </Button>
         </div>
 
         <div className="mt-[10px] text-[13px] text-[#00000099] cursor-pointer hover:text-[#f50]">
-          61 рецензия
+          {data.votes.filmCritics && data.votes.filmCritics} рецензий
         </div>
 
         <div className="flex flex-col mt-[200px] gap-2">
@@ -256,21 +351,18 @@ export const MovieDesc = () => {
             </div>
           </div>
 
-          {/*<div className="">Джастин Ройланд</div>*/}
-          <span className="text-[13px] text-black cursor-pointer hover:text-[#f50]">
-            Джастин Ройланд
-          </span>
-          <span className="text-[13px] text-black cursor-pointer hover:text-[#f50]">
-            Джастин Ройланд
-          </span>
-          <span className="text-[13px] text-black cursor-pointer hover:text-[#f50]">
-            Джастин Ройланд
-          </span>
-          <span className="text-[13px] text-black cursor-pointer hover:text-[#f50]">
-            Джастин Ройланд
-          </span>
+          {actors &&
+            actors.slice(0, 10).map((item, index) => (
+              <span
+                className="text-[13px] text-black cursor-pointer hover:text-[#f50]"
+                key={index}
+              >
+                {item.name}
+              </span>
+            ))}
+
           <span className="text-[13px] cursor-pointer text-[#f50]">
-            179 актеров
+            {actors.length > 0 && actors.length} актеров
           </span>
         </div>
       </div>

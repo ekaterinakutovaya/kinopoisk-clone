@@ -1,6 +1,7 @@
 import { BadgeCheck } from "lucide-react";
 import { Loader } from "@/components/Loader.tsx";
 import { Link } from "react-router-dom";
+import { Movie } from "@/types.ts";
 
 type Props = {
   data: Movie[];
@@ -8,7 +9,7 @@ type Props = {
 
 export const Suggest = ({ data }: Props) => {
   return (
-    <div className="absolute w-[396px] top-[38px] left-0 bg-white rounded-[8px]">
+    <div className="absolute w-[396px] h-[454px] top-[38px] left-0 bg-white rounded-[8px] box-shadow overflow-y-auto">
       <div className="w-full bg-white pt-[16px] rounded-[8px]">
         <h3 className="text-[13px] text-[#00000099] pb-[10px] pl-[16px]">
           Входит в топ 10 за месяц

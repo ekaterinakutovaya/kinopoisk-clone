@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button.tsx";
 import { BadgeCheck, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Loader } from "@/components/Loader.tsx";
+import { Movie } from "@/types.ts";
 
 type SearchMobileProps = {
   data: Movie[];

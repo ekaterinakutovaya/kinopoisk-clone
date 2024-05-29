@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button.tsx";
 import { IoPlaySharp } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { ActorList } from "@/features/ActorList.tsx";
+import { CreatorList } from "@/features/CreatorList.tsx";
+import { MovieRaitingsBlockMobile } from "@/features/MovieRaitingsBlockMobile.tsx";
 // import { Button } from "@/components/ui/button.tsx";
 // import { IoPlaySharp } from "react-icons/io5";
 // import { Link } from "react-router-dom";
@@ -101,6 +103,8 @@ export const MovieDescMobile = () => {
       </div>
 
       <ActorList />
+      <CreatorList />
+      <MovieRaitingsBlockMobile />
     </div>
   );
 };

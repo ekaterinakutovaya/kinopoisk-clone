@@ -25,7 +25,6 @@ export const Recommends = () => {
         },
       )
       .then((response) => {
-        console.log(response.data.docs);
         setResults(response.data.docs);
       })
       .catch((error) => {

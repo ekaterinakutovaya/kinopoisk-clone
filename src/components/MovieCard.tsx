@@ -7,7 +7,7 @@ type Props = {
 };
 const MovieCard = ({ item }: Props) => {
   return (
-    <Link to="/movie/1">
+    <Link to={`/movie/${item.id}`}>
       <div className="movie-wrapper w-[128px] lg:w-[150px] max-w-[150px] lg:min-h-[289px] lg:h-auto transition-all duration-300">
         <div className="poster-wrapper w-full h-[192px] lg:h-[225px] relative">
           <div className="poster-image flex justify-center items-center w-full h-full bg-[#f4f4f4] overflow-hidden">

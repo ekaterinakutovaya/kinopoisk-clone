@@ -1,12 +1,24 @@
 import { IoStar, IoStarHalf } from "react-icons/io5";
-import React from "react";
 import { Button } from "@/components/ui/button.tsx";
 import { Plus } from "lucide-react";
+import { formatNumberWithSpaces } from "@/lib/utils.ts";
 
-export const MovieRating = ({ rating, maxRating = 10 }) => {
-  const filledStars = Math.floor(rating);
-  const halfStar = rating % 1 !== 0;
-  const emptyStars = maxRating - filledStars - (halfStar ? 1 : 0);
+type Props = {
+  ratingKp: number;
+  ratingImdb: number;
+  kpVotes: number;
+  imdbVotes: number;
+};
+
+export const MovieRating = ({
+  ratingKp,
+  ratingImdb,
+  kpVotes,
+  imdbVotes,
+}: Props) => {
+  const filledStars = Math.floor(ratingKp);
+  const halfStar = ratingKp % 1 !== 0;
+  const emptyStars = 10 - filledStars - (halfStar ? 1 : 0);
 
   return (
     <div>
@@ -47,14 +59,49 @@ export const MovieRating = ({ rating, maxRating = 10 }) => {
             ))}
         </div>
 
-        <div className="">
-          <span className="mb-2 text-[#3bb33b] text-[48px] leading-[34px] font-bold">
-            {rating.toFixed(1)}
-          </span>
-          <div className="ml-2 text-[13px] text-[#00000099]">
-            <span>615 365 оценок</span>{" "}
+        <div className="-mt-2">
+          <div className="flex gap-4 mb-2">
+            {ratingKp >= 8 ? (
+              <div className="text-[48px] leading-[48px] font-bold clip-text">
+                {ratingKp.toFixed(1)}
+              </div>
+            ) : ratingKp >= 6 && ratingKp < 7 ? (
+              <div className="text-[48px] leading-[48px] font-bold text-[#777777]">
+                {ratingKp.toFixed(1)}
+              </div>
+            ) : ratingKp < 5 ? (
+              <div className="text-[48px] leading-[48px] font-bold text-[#777777]">
+                {ratingKp.toFixed(1)}
+              </div>
+            ) : (
+              <div className="text-[48px] leading-[48px] font-bold text-[#3bb33b]">
+                {ratingKp.toFixed(1)}
+              </div>
+            )}
+
+            {ratingKp >= 8 && (
+              <div className="rating-badge pt-[4px]">
+                <div className="flex items-center gap-1">
+                  <span className="icon-left"></span>
+                  <div>
+                    <span className="text-center block clip-text text-[15px] font-bold leading-[18px]">
+                      ТОП 250
+                    </span>
+                    <span className="block clip-text text-[15px] font-bold leading-[18px]">
+                      24 место
+                    </span>
+                  </div>
+                  <span className="icon-right"></span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className="text-[13px] text-[#00000099]">
+            <span>{formatNumberWithSpaces(kpVotes)} оценок</span>{" "}
             <span className="ml-2">
-              <span className="font-bold">IMDb: 7.30</span> 266 937 оценок
+              <span className="font-bold">IMDb: {ratingImdb.toFixed(2)}</span>{" "}
+              {formatNumberWithSpaces(imdbVotes)} оценок
             </span>
           </div>
         </div>

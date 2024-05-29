@@ -6,12 +6,12 @@ import { useEffect, useRef } from "react";
 import { NavigationOptions } from "swiper/types";
 import { chunkArray } from "@/lib/utils.ts";
 
-export const ActorList = () => {
+export const CreatorList = () => {
   const list = [
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
   ];
 
-  const chunkedList = chunkArray(list, 4);
+  const chunkedList = chunkArray(list, 2);
 
   const swiperPrevRef = useRef(null);
   const swiperNextRef = useRef(null);
@@ -36,7 +36,7 @@ export const ActorList = () => {
 
   return (
     <div className="w-full text-start">
-      <h3 className="font-bold mt-2 mb-6">Актёры</h3>
+      <h3 className="font-bold mt-2 mb-6">Создатели</h3>
 
       <div className="relative">
         <Swiper
