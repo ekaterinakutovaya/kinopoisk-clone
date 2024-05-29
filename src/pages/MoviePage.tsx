@@ -1,4 +1,5 @@
-import MovieDesc from "@/components/MovieDesc.tsx";
+import MovieDesc from "@/features/MovieDesc.tsx";
+import { MovieRaitingsBlock } from "@/features/MovieRaitingsBlock.tsx";
 
 const MoviePage = () => {
   // useEffect(() => {
@@ -9,6 +10,7 @@ const MoviePage = () => {
     <div className="w-full min-h-desktop-body-min-height mt-[150px]">
       <div className="container flex-1 px-[16px] lg:px-[10px] bg-white">
         <MovieDesc />
+        <MovieRaitingsBlock />
 
         <div className="h-[3000px]"></div>
       </div>
