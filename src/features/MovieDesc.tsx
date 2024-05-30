@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 import { BookmarkPlus, ChevronRight, Ellipsis, FolderPlus } from "lucide-react";
 import { MovieDetails } from "@/types.ts";
 import { formatDuration, formatNumberWithSpaces } from "@/lib/utils.ts";
+import { FaTelegramPlane, FaTwitter } from "react-icons/fa";
+import { BsInstagram } from "react-icons/bs";
+import { GoDotFill } from "react-icons/go";
+import { BiSolidComment } from "react-icons/bi";
 
 type Props = {
   data: MovieDetails;
@@ -69,6 +73,31 @@ export const MovieDesc = ({ data }: Props) => {
             <FolderPlus className="min-w-[24px] min-h-[24px]" />
             <div className="pl-[4px] text-[15px] font-bold">Добавить папку</div>
           </Button>
+        </div>
+
+        <div className="w-full socials mt-[80px]">
+          <div className="flex w-full items-center justify-center gap-2 mb-8">
+            <div className="w-[52px] h-[52px] rounded-full bg-[#55acee] flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-200 ease">
+              <FaTwitter className="w-[20px] h-[20px] text-white" />
+            </div>
+            <div className="w-[52px] h-[52px] rounded-full bg-[#e91e63] flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-200 ease">
+              <BsInstagram className="w-[20px] h-[20px] text-white" />
+            </div>
+            <div className="w-[52px] h-[52px] rounded-full bg-[#0088cc] flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-200 ease">
+              <FaTelegramPlane className="w-[20px] h-[20px] text-white" />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center cursor-pointer">
+              <GoDotFill className="text-red dot-red bg-red mt-[3px] mr-2" />
+              <span className="text-[13px]">Нашли ошибку?</span>
+            </div>
+            <div className="flex items-center cursor-pointer">
+              <GoDotFill className="text-green dot-green mt-[3px] mr-2" />
+              <span className="text-[13px]">Добавить инфо</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -291,6 +320,11 @@ export const MovieDesc = ({ data }: Props) => {
                 `${data.movieLength} мин. / ${formatDuration(data.movieLength)}`}
             </div>
           </div>
+        </div>
+
+        <div className="flex items-center cursor-pointer mt-[174px]">
+          <BiSolidComment className="text-gray-700 mt-[3px] mr-2" />
+          <span className="text-[13px]">Добавить примечание</span>
         </div>
       </div>
 

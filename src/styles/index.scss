@@ -553,17 +553,6 @@ aside {
 }
 
 .subscribe {
-  //position: relative;
-  //display: flex;
-  //justify-content: space-between;
-  //align-items: center;
-  //height: 450px;
-  //transition: opacity .1s ease-out;
-  //
-  //img {
-  //  inset-inline-end: 0;
-  //  position: absolute;
-  //}
 
   @media screen and (min-width: 728px) {
     position: relative;
@@ -662,7 +651,7 @@ aside {
   font-size: 13px;
   font-weight: 500;
 
-  flex: 69 1 0%;
+  flex: 69 1 0;
   min-width: 30px;
 }
 
@@ -679,7 +668,7 @@ aside {
   font-size: 13px;
   font-weight: 500;
 
-  flex: 31 1 0%;
+  flex: 31 1 0;
   min-width: 30px;
 }
 
@@ -731,7 +720,6 @@ aside {
 }
 
 .reviews-total {
-  //padding-left: 7px;
   border-left: 2px solid #f50;
   display: flex;
   flex-flow: column;
@@ -753,4 +741,24 @@ aside {
   padding-left: 9px;
   text-decoration: none;
   margin-bottom: 12px;
+}
+
+.border-top-bottom {
+  border-top: 1px solid rgba(55,50,145,.1);
+  border-bottom: 1px solid rgba(55,50,145,.1);
+}
+
+.border-top {
+  border-top: 1px solid rgba(55,50,145,.1);
+}
+
+.dot-red {
+  path {
+    fill: red;
+  }
+}
+.dot-green {
+  path {
+    fill: green;
+  }
 }

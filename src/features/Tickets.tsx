@@ -26,7 +26,6 @@ export const Tickets = () => {
         },
       )
       .then((response) => {
-        console.log(response.data.docs);
         setResults(response.data.docs);
       })
       .catch((error) => {

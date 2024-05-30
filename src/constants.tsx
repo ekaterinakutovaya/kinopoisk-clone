@@ -1,5 +1,4 @@
 import { MdHomeFilled } from "react-icons/md";
-import { IoPlaySharp } from "react-icons/io5";
 import poster001 from "../public/images/poster001.webp";
 import poster002 from "../public/images/poster002.webp";
 import festival001 from "../public/images/festival001.webp";
@@ -11,6 +10,7 @@ import {
   Disc3,
   Gamepad2,
   MonitorPlay,
+  Play,
   TicketMinus,
   Trophy,
   Tv,
@@ -28,7 +28,7 @@ export const mainNavigation = [
     to: "/online-cinema",
     title: "Онлайн-кинотеатр",
     isActive: false,
-    icon: <IoPlaySharp className="w-[24px] h-[24px]" />,
+    icon: <Play className="w-[24px] h-[24px]" />,
   },
   {
     to: "/movies",

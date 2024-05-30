@@ -4,6 +4,9 @@ import { Festivals } from "@/features/Festivals.tsx";
 import { Recommends } from "@/features/Recommends.tsx";
 import { YandexPlusPromo } from "@/features/YandexPlusPromo.tsx";
 import { Tickets } from "@/features/Tickets.tsx";
+import { Releases } from "@/features/Releases.tsx";
+import { NewsMobile } from "@/features/NewsMobile.tsx";
+import { News } from "@/features/News.tsx";
 
 export const HomePage = () => {
   return (
@@ -18,8 +21,12 @@ export const HomePage = () => {
         <PromoBlock />
         <Festivals />
         <Tickets />
-        <Recommends />
+
         <YandexPlusPromo />
+        <NewsMobile />
+        <News />
+        <Recommends />
+        <Releases />
       </div>
     </div>
   );
