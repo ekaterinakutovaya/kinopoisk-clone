@@ -13,33 +13,10 @@ import {
 import { FaUser } from "react-icons/fa6";
 import { SearchMobile } from "@/components/SearchMobile.tsx";
 import { PiTelevisionFill } from "react-icons/pi";
-import axios from "axios";
 
 export const HeaderMobile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-
-  const [results, setResults] = useState([]);
-
-  useEffect(() => {
-    if (searchOpen) {
-      axios
-        .get(
-          `${import.meta.env.VITE_API_URL}/v1.4/movie?page=1&limit=10&rating.kp=7-10`,
-          {
-            headers: {
-              "X-API-KEY": import.meta.env.VITE_X_API_KEY,
-            },
-          },
-        )
-        .then((response) => {
-          setResults(response.data.docs);
-        })
-        .catch((error) => {
-          console.error("There was an error fetching the data!", error);
-        });
-    }
-  }, [searchOpen]);
 
   useEffect(() => {
     if (menuOpen || searchOpen) {
@@ -85,9 +62,7 @@ export const HeaderMobile = () => {
           </div>
         </div>
 
-        {searchOpen && (
-          <SearchMobile data={results} setSearchOpen={setSearchOpen} />
-        )}
+        {searchOpen && <SearchMobile setSearchOpen={setSearchOpen} />}
 
         <nav
           className={`fixed z-10 w-full h-0 bg-[#141414] overflow-hidden border-t shadow-inset-custom top-[52px] left-0 right-0 flex flex-col gap-6  transition-all duration-300 ${menuOpen ? "nav-is-open" : ""}`}

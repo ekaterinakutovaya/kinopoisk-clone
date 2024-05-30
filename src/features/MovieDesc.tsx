@@ -279,7 +279,7 @@ export const MovieDesc = ({ data }: Props) => {
             </div>
             <div className="text-[13px] leading-[18px] text-black">
               <span className="font-bold py-[3px] px-[4px] border border-solid border-black">
-                {data.ageRating && data.ageRating}+
+                {data.ageRating ? `${data.ageRating}+` : "18+"}
               </span>
             </div>
 

@@ -28,7 +28,7 @@ export const SearchInput = () => {
   const fetchSearchData = async (query: React.SetStateAction<string>) => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/v1.4/movie/search?page=1&limit=10&query=${query}`,
+        `${import.meta.env.VITE_API_URL}/v1.4/movie/search?page=1&limit=50&query=${query}`,
         {
           headers: {
             "X-API-KEY": import.meta.env.VITE_X_API_KEY,

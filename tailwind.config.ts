@@ -112,6 +112,12 @@ module.exports = {
       borderColor: {
         "custom-gray": "#e8e8e8",
       },
+      gridTemplateColumns: {
+        yandex: "240px 160px 156px 156px 196px",
+      },
+      gridTemplateRows: {
+        yandex: "135px 135px",
+      },
     },
   },
   variants: {

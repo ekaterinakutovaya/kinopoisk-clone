@@ -30,6 +30,10 @@ export const Recommends = () => {
       });
   }, []);
 
+  if (!results || results.length === 0) {
+    return null;
+  }
+
   return (
     <div className="mt-[30px] max-w-[926px] min-h-[349px]">
       <div className="flex items-center mb-[16px]">

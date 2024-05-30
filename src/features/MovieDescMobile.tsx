@@ -34,7 +34,7 @@ export const MovieDescMobile = ({ data }: Props) => {
 
   return (
     <div className="lg:hidden w-full flex flex-col justify-center text-center gap-[30px] border-bottom py-[20px]">
-      <div className="w-[220px] h-[330px] overflow-hidden my-0 mx-auto">
+      <div className="w-[220px] h-[330px] overflow-hidden my-0 mx-auto bg-[#cccccc]">
         <img
           src={data?.poster?.url}
           alt=""

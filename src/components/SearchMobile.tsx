@@ -4,16 +4,75 @@ import { X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Loader } from "@/components/Loader.tsx";
 import { Movie } from "@/types.ts";
+import debouce from "lodash.debounce";
+import { SetStateAction, useEffect, useMemo, useState } from "react";
+import axios from "axios";
 
 type SearchMobileProps = {
-  data: Movie[];
   setSearchOpen: (open: boolean) => void;
 };
 
-export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
+export const SearchMobile = ({ setSearchOpen }: SearchMobileProps) => {
+  const [results, setResults] = useState([]);
+  const [inputValue, setInputValue] = useState("");
   const handleLinkClick = () => {
     setSearchOpen(false);
   };
+
+  useEffect(() => {
+    if (inputValue.length === 0) {
+      fetchSuggestData();
+    }
+  }, []);
+
+  const fetchSearchData = async (query: React.SetStateAction<string>) => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/v1.4/movie/search?page=1&limit=50&notNullFields=poster.url&query=${query}`,
+        {
+          headers: {
+            "X-API-KEY": import.meta.env.VITE_X_API_KEY,
+          },
+        },
+      );
+      setResults(response.data.docs);
+    } catch (error) {
+      console.error("Error fetching data", error);
+    }
+  };
+
+  const fetchSuggestData = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/v1.4/movie?page=1&limit=10&notNullFields=poster.url&rating.kp=7-10`,
+        {
+          headers: {
+            "X-API-KEY": import.meta.env.VITE_X_API_KEY,
+          },
+        },
+      );
+      setResults(response.data.docs);
+    } catch (error) {
+      console.error("There was an error fetching the data!", error);
+    }
+  };
+
+  const handleChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setInputValue(event.target.value);
+    fetchSearchData(event.target.value);
+  };
+
+  const debouncedResults = useMemo(() => {
+    return debouce(handleChange, 300);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      debouncedResults.cancel();
+    };
+  });
 
   return (
     <div className="fixed w-full top-0 left-0 bg-white h-full flex flex-col">
@@ -22,6 +81,7 @@ export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
         <input
           type="text"
           className="w-full block py-[8px] pl-[16px] text-[15px] text-white"
+          onChange={handleChange}
         />
         <Button
           variant="ghost"
@@ -39,8 +99,8 @@ export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
         </h3>
 
         <div className="flex flex-col pb-[10px]">
-          {data.length ? (
-            data.map((item) => (
+          {results.length ? (
+            results.map((item: Movie) => (
               <Link
                 to={`/movie/${item.id}`}
                 key={item.id}
@@ -70,7 +130,7 @@ export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
                         </span>
                       ) : (
                         <span className="text-[13px] text-[#00000099]">
-                          {item.genres[0].name},&nbsp;
+                          {item.genres && item.genres[0].name},&nbsp;
                         </span>
                       )}
                       <span className="text-[13px] text-[#00000099]">

@@ -59,6 +59,7 @@ export interface Movie {
   top250: number | null;
   isSeries: boolean;
   ticketsOnSale: boolean;
+  category?: string;
 }
 
 interface ExternalId {

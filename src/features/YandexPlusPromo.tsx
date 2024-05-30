@@ -77,59 +77,61 @@ export const YandexPlusPromo = () => {
         <img src={banner} alt="" className="yandex-cover" />
       </div>
 
-      <div className="w-full max-w-[930px] bg-[#000] pt-0 pl-[16px] md:pr-12 pb-12 md:pl-12">
-        <div className="flex items-center mb-[16px]">
-          <h2 className="text-white font-bold mb-[16px] text-[22px] pt-[30px]">
-            Смотрят сейчас
-          </h2>
-          <div className="flex items-center -mb-[18px]">
-            <ChevronRight className="text-white w-[28px] h-[28px] leading-[28px]" />
+      {results && results.length > 0 && (
+        <div className="w-full max-w-[930px] bg-[#000] pt-0 pl-[16px] md:pr-12 pb-12 md:pl-12">
+          <div className="flex items-center mb-[16px]">
+            <h2 className="text-white font-bold mb-[16px] text-[22px] pt-[30px]">
+              Смотрят сейчас
+            </h2>
+            <div className="flex items-center -mb-[18px]">
+              <ChevronRight className="text-white w-[28px] h-[28px] leading-[28px]" />
+            </div>
           </div>
-        </div>
 
-        <div className="relative">
-          <Swiper
-            loop={true}
-            freeMode={true}
-            modules={[Navigation, FreeMode]}
-            onSlideChange={() => console.log("slideChange")}
-            className="w-full"
-            navigation={{
-              prevEl: ".swiper-button-prev-yandex",
-              nextEl: ".swiper-button-next-yandex",
-            }}
-            breakpoints={{
-              0: {
-                slidesPerView: "auto",
-                spaceBetween: 8,
-              },
-              768: {
-                slidesPerView: 5,
-                spaceBetween: 8,
-              },
-            }}
-          >
-            {results.map((item, i) => (
-              <SwiperSlide
-                key={i}
-                className="min-w-[229px] max-w-[229px] w-[229px] lg:w-auto lg:h-[343px]"
-              >
-                <NowWatchingCard item={item} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <div className="hidden lg:flex swiper-button-prev-yandex top-[50%] transform -translate-y-1/2">
-            <div className="w-[16px] h-[16px]">
-              <HiChevronLeft className="w-full h-full object-contain" />
+          <div className="relative">
+            <Swiper
+              loop={true}
+              freeMode={true}
+              modules={[Navigation, FreeMode]}
+              onSlideChange={() => console.log("slideChange")}
+              className="w-full"
+              navigation={{
+                prevEl: ".swiper-button-prev-yandex",
+                nextEl: ".swiper-button-next-yandex",
+              }}
+              breakpoints={{
+                0: {
+                  slidesPerView: "auto",
+                  spaceBetween: 8,
+                },
+                768: {
+                  slidesPerView: 5,
+                  spaceBetween: 8,
+                },
+              }}
+            >
+              {results.map((item, i) => (
+                <SwiperSlide
+                  key={i}
+                  className="min-w-[229px] max-w-[229px] w-[229px] lg:w-auto lg:h-[343px]"
+                >
+                  <NowWatchingCard item={item} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <div className="hidden lg:flex swiper-button-prev-yandex top-[50%] transform -translate-y-1/2">
+              <div className="w-[16px] h-[16px]">
+                <HiChevronLeft className="w-full h-full object-contain" />
+              </div>
             </div>
-          </div>
-          <div className="hidden lg:flex swiper-button-next-yandex top-[50%] transform -translate-y-1/2">
-            <div className="w-[16px] h-[16px]">
-              <HiChevronRight className="w-full h-full object-contain" />
+            <div className="hidden lg:flex swiper-button-next-yandex top-[50%] transform -translate-y-1/2">
+              <div className="w-[16px] h-[16px]">
+                <HiChevronRight className="w-full h-full object-contain" />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

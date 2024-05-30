@@ -7,6 +7,15 @@ import festival002 from "../public/images/festival002.webp";
 import festival003 from "../public/images/festival003.webp";
 import festival004 from "../public/images/festival004.webp";
 import festival005 from "../public/images/festival005.webp";
+import {
+  Disc3,
+  Gamepad2,
+  MonitorPlay,
+  TicketMinus,
+  Trophy,
+  Tv,
+  Tv2,
+} from "lucide-react";
 
 export const mainNavigation = [
   {
@@ -25,37 +34,43 @@ export const mainNavigation = [
     to: "/movies",
     title: "Фильмы",
     isActive: false,
-    icon: <IoPlaySharp className="w-[24px] h-[24px]" />,
+    icon: <Tv2 className="w-[24px] h-[24px]" />,
   },
   {
     to: "/serials",
     title: "Сериалы",
     isActive: false,
-    icon: <IoPlaySharp className="w-[24px] h-[24px]" />,
+    icon: <MonitorPlay className="w-[24px] h-[24px]" />,
   },
   {
     to: "/tv-channels",
     title: "Телеканалы",
     isActive: false,
-    icon: <IoPlaySharp className="w-[24px] h-[24px]" />,
+    icon: <Tv className="w-[24px] h-[24px]" />,
   },
   {
     to: "/sport",
     title: "Спорт",
     isActive: false,
-    icon: <IoPlaySharp className="w-[24px] h-[24px]" />,
+    icon: <Trophy className="w-[24px] h-[24px]" />,
+  },
+  {
+    to: "/games",
+    title: "Игры",
+    isActive: false,
+    icon: <Gamepad2 className="w-[24px] h-[24px]" />,
   },
   {
     to: "/tickets",
     title: "Билеты в кино",
     isActive: false,
-    icon: <IoPlaySharp className="w-[24px] h-[24px]" />,
+    icon: <TicketMinus className="w-[24px] h-[24px]" />,
   },
   {
     to: "/media",
     title: "Медиа",
     isActive: false,
-    icon: <IoPlaySharp className="w-[24px] h-[24px]" />,
+    icon: <Disc3 className="w-[24px] h-[24px]" />,
   },
 ];
 
