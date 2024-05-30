@@ -23,8 +23,6 @@ export const Festivals = () => {
             loop={false}
             freeMode={true}
             modules={[Navigation, FreeMode]}
-            slidesPerView={4}
-            spaceBetween={15}
             onSlideChange={() => console.log("slideChange")}
             className="w-full"
             navigation={{
@@ -38,7 +36,7 @@ export const Festivals = () => {
               },
               768: {
                 slidesPerView: 4,
-                spaceBetween: 28,
+                spaceBetween: 10,
               },
             }}
           >

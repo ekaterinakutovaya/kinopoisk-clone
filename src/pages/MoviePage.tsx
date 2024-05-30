@@ -55,8 +55,6 @@ const MoviePage = () => {
             </>
           )
         )}
-
-        <div className="h-[3000px]"></div>
       </div>
     </div>
   );

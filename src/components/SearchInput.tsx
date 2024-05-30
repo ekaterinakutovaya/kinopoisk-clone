@@ -1,9 +1,10 @@
 import { Input } from "@/components/ui/input.tsx";
 import { IoSearch } from "react-icons/io5";
 import { VscSettings } from "react-icons/vsc";
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { Suggest } from "@/components/Suggest.tsx";
+import debouce from "lodash.debounce";
 
 export const SearchInput = () => {
   const [results, setResults] = useState([]);
@@ -11,15 +12,20 @@ export const SearchInput = () => {
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
-    if (inputValue.length === 0) {
-      fetchDefaultData();
-    } else if (inputValue.length % 3 === 0 && inputValue.length !== 0) {
-      setResults([]);
-      fetchData(inputValue);
+    if (showSuggest && inputValue.length === 0) {
+      console.log("do suggest query");
+      fetchSuggestData();
+    }
+  }, [showSuggest]);
+
+  useEffect(() => {
+    if (inputValue.length === 0 && showSuggest) {
+      console.log("do suggest query");
+      fetchSuggestData();
     }
   }, [inputValue]);
 
-  const fetchData = async (query: string) => {
+  const fetchSearchData = async (query: React.SetStateAction<string>) => {
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/v1.4/movie/search?page=1&limit=10&query=${query}`,
@@ -35,7 +41,7 @@ export const SearchInput = () => {
     }
   };
 
-  const fetchDefaultData = async () => {
+  const fetchSuggestData = async () => {
     try {
       const response = await axios.get(
         `${import.meta.env.VITE_API_URL}/v1.4/movie?page=1&limit=10&rating.kp=7-10`,
@@ -55,13 +61,8 @@ export const SearchInput = () => {
     target: { value: SetStateAction<string> };
   }) => {
     setInputValue(event.target.value);
+    fetchSearchData(event.target.value);
   };
-
-  useEffect(() => {
-    if (showSuggest) {
-      fetchDefaultData();
-    }
-  }, [showSuggest]);
 
   const handleFocus = () => {
     setShowSuggest(true);
@@ -71,13 +72,23 @@ export const SearchInput = () => {
     setTimeout(() => setShowSuggest(false), 100);
   };
 
+  const debouncedResults = useMemo(() => {
+    return debouce(handleChange, 300);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      debouncedResults.cancel();
+    };
+  });
+
   return (
     <>
       <div className="w-full h-[34px] lg:w-[380px] max-w-[380px] relative">
         <Input
           placeholder="Фильмы, сериалы, персоны"
           className="w-full h-full"
-          onChange={handleChange}
+          onChange={debouncedResults}
           onFocus={handleFocus}
           onBlur={handleBlur}
         />

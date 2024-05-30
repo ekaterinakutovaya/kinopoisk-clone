@@ -20,9 +20,21 @@ const MovieCard = ({ item }: Props) => {
           </div>
 
           <div className="overlay absolute top-0 left-0 block w-full h-full pointer-events-none">
-            <span className="w-[32px] text-[13px] font-bold text-white absolute z-10 top-[6px] left-[6px] bg-[#3bb33b] flex items-center justify-center">
-              {item.rating?.kp.toFixed(2)}
-            </span>
+            {item.rating.kp >= 9 ? (
+              <span className="w-[50px] text-[13px] font-bold text-white absolute z-10 top-[6px] left-[6px] gold-badge flex gap-0.5 items-center justify-center">
+                <span className="icon-left-black"></span>
+                <span aria-hidden="true">{item.rating?.kp.toFixed(2)}</span>
+                <span className="icon-right-black"></span>
+              </span>
+            ) : item.rating.kp < 7 ? (
+              <span className="w-[32px] text-[13px] font-bold text-white absolute z-10 top-[6px] left-[6px] bg-[#777777] flex items-center justify-center">
+                {item.rating?.kp.toFixed(2)}
+              </span>
+            ) : (
+              <span className="w-[32px] text-[13px] font-bold text-white absolute z-10 top-[6px] left-[6px] bg-[#3bb33b] flex items-center justify-center">
+                {item.rating?.kp.toFixed(2)}
+              </span>
+            )}
 
             <div className="action-icons opacity-0 absolute right-[6px] top-[6px] z-10 flex items-center gap-2">
               <Eye className="action-icon w-[22px] h-[22px] text-white opacity-80 hover:opacity-100 transition-all duration-300" />

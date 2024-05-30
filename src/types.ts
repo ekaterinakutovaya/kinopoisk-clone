@@ -50,7 +50,8 @@ export interface Movie {
   seriesLength: number | null;
   ratingMpaa: string | null;
   ageRating: number;
-  poster: Poster;
+  poster?: Poster;
+  cover?: Poster;
   backdrop: Backdrop;
   genres: Genre[];
   countries: Country[];

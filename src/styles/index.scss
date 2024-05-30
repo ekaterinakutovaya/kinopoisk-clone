@@ -186,6 +186,12 @@ aside {
 
 .promo-wrapper {
   background-image: url(//avatars.mds.yandex.net/get-bunker/56833/43c1fcf1b77eef0d42cbf419e346bc92af930c46/940x400);
+  opacity: 1;
+  background-repeat: no-repeat;
+  background-position: -1000%;
+  background-size: cover;
+  -webkit-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
 }
 
 .promo-wrapper::after {

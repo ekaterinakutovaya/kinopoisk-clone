@@ -15,7 +15,7 @@ export const Recommends = () => {
   useEffect(() => {
     axios
       .get(
-        `${import.meta.env.VITE_API_URL}/v1.4/movie?page=1&limit=30&lists=top250`,
+        `${import.meta.env.VITE_API_URL}/v1.4/movie?page=1&limit=30&notNullFields=poster.url&rating.kp=5-10`,
         {
           headers: {
             "X-API-KEY": import.meta.env.VITE_X_API_KEY,

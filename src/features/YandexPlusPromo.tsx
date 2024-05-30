@@ -3,14 +3,36 @@ import { Button } from "@/components/ui/button.tsx";
 import { ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
-import { festivals } from "@/constants.tsx";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import { NowWatchingCard } from "@/components/NowWatchingCard.tsx";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export const YandexPlusPromo = () => {
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${import.meta.env.VITE_API_URL}/v1.4/movie?page=1&limit=30&notNullFields=poster.url&type=movie&votes.kp=500-666666&lists=top250`,
+        {
+          headers: {
+            "X-API-KEY": import.meta.env.VITE_X_API_KEY,
+          },
+        },
+      )
+      .then((response) => {
+        console.log(response.data.docs);
+        setResults(response.data.docs);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+  }, []);
+
   return (
     <div className="w-full mt-[30px] mb-[40px]">
       <div className="yandex-wrapper">
@@ -67,11 +89,9 @@ export const YandexPlusPromo = () => {
 
         <div className="relative">
           <Swiper
-            loop={false}
+            loop={true}
             freeMode={true}
             modules={[Navigation, FreeMode]}
-            slidesPerView={4}
-            spaceBetween={15}
             onSlideChange={() => console.log("slideChange")}
             className="w-full"
             navigation={{
@@ -84,17 +104,17 @@ export const YandexPlusPromo = () => {
                 spaceBetween: 8,
               },
               768: {
-                slidesPerView: 4,
+                slidesPerView: 5,
                 spaceBetween: 8,
               },
             }}
           >
-            {festivals.map((item) => (
+            {results.map((item, i) => (
               <SwiperSlide
-                key={item.id}
-                className="min-w-[229px] max-w-[229px] lg:w-auto lg:h-[343px]"
+                key={i}
+                className="min-w-[229px] max-w-[229px] w-[229px] lg:w-auto lg:h-[343px]"
               >
-                <NowWatchingCard />
+                <NowWatchingCard item={item} />
               </SwiperSlide>
             ))}
           </Swiper>
