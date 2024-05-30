@@ -1,37 +1,17 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+
 import { FestivalCard } from "@/components/FestivalCard.tsx";
 import { festivals } from "@/constants.tsx";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/free-mode";
 
 import "swiper/css/navigation";
 
 import { FreeMode, Navigation } from "swiper/modules";
-import { MutableRefObject, useEffect, useRef } from "react";
-import { NavigationOptions, Swiper as SwiperType } from "swiper/types";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 
 export const Festivals = () => {
-  const swiperRef: MutableRefObject<SwiperType | null> = useRef(null);
-  const swiperPrevRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-  const swiperNextRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-
-  useEffect(() => {
-    if (swiperRef.current && swiperRef.current.navigation) {
-      swiperRef.current.navigation.update();
-    }
-  }, []);
-
-  const handleSwiperInit = (swiper: SwiperType) => {
-    swiperRef.current = swiper;
-    if (swiper.params.navigation) {
-      const navigation = swiper.params.navigation as NavigationOptions;
-      navigation.prevEl = swiperPrevRef.current;
-      navigation.nextEl = swiperNextRef.current;
-      swiper.navigation.init();
-      swiper.navigation.update();
-    }
-  };
-
   return (
     <div>
       <div className="mt-[15px] lg:mt-[30px] max-w-[926px] min-h-[349px]">
@@ -45,12 +25,11 @@ export const Festivals = () => {
             modules={[Navigation, FreeMode]}
             slidesPerView={4}
             spaceBetween={15}
-            onSwiper={handleSwiperInit}
             onSlideChange={() => console.log("slideChange")}
             className="w-full"
             navigation={{
-              prevEl: swiperPrevRef.current,
-              nextEl: swiperNextRef.current,
+              prevEl: ".swiper-button-prev-festival",
+              nextEl: ".swiper-button-next-festival",
             }}
             breakpoints={{
               0: {
@@ -72,18 +51,12 @@ export const Festivals = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div
-            ref={swiperPrevRef}
-            className="hidden lg:flex swiper-button-prev top-[50%] transform -translate-y-1/2"
-          >
+          <div className="hidden lg:flex swiper-button-prev-festival top-[50%] transform -translate-y-1/2">
             <div className="w-[16px] h-[16px]">
               <HiChevronLeft className="w-full h-full object-contain" />
             </div>
           </div>
-          <div
-            ref={swiperNextRef}
-            className="hidden lg:flex swiper-button-next top-[50%] transform -translate-y-1/2"
-          >
+          <div className="hidden lg:flex swiper-button-next-festival top-[50%] transform -translate-y-1/2">
             <div className="w-[16px] h-[16px]">
               <HiChevronRight className="w-full h-full object-contain" />
             </div>

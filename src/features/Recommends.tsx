@@ -2,16 +2,14 @@ import { ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import MovieCard from "@/components/MovieCard.tsx";
-import { MutableRefObject, useEffect, useRef, useState } from "react";
-import { Swiper as SwiperType, NavigationOptions } from "swiper/types";
+import { useEffect, useState } from "react";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 import axios from "axios";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/free-mode";
 
 export const Recommends = () => {
-  const swiperRef: MutableRefObject<SwiperType | null> = useRef(null);
-  const swiperPrevRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-  const swiperNextRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -32,23 +30,6 @@ export const Recommends = () => {
       });
   }, []);
 
-  useEffect(() => {
-    if (swiperRef.current && swiperRef.current.navigation) {
-      swiperRef.current.navigation.update();
-    }
-  }, []);
-
-  const handleSwiperInit = (swiper: SwiperType) => {
-    swiperRef.current = swiper;
-    if (swiper.params.navigation) {
-      const navigation = swiper.params.navigation as NavigationOptions;
-      navigation.prevEl = swiperPrevRef.current;
-      navigation.nextEl = swiperNextRef.current;
-      swiper.navigation.init();
-      swiper.navigation.update();
-    }
-  };
-
   return (
     <div className="mt-[30px] max-w-[926px] min-h-[349px]">
       <div className="flex items-center mb-[16px]">
@@ -63,11 +44,11 @@ export const Recommends = () => {
           loop={false}
           freeMode={true}
           modules={[Navigation, FreeMode]}
-          onSwiper={handleSwiperInit}
+          onSlideChange={() => console.log("slideChange")}
           className="w-full"
           navigation={{
-            prevEl: swiperPrevRef.current,
-            nextEl: swiperNextRef.current,
+            prevEl: ".swiper-button-prev-rec",
+            nextEl: ".swiper-button-next-rec",
           }}
           breakpoints={{
             0: {
@@ -90,18 +71,12 @@ export const Recommends = () => {
               </SwiperSlide>
             ))}
         </Swiper>
-        <div
-          ref={swiperPrevRef}
-          className="hidden lg:flex swiper-button-prev top-[42%] transform -translate-y-1/2"
-        >
+        <div className="hidden lg:flex swiper-button-prev-rec top-[42%] transform -translate-y-1/2">
           <div className="w-[16px] h-[16px]">
             <HiChevronLeft className="w-full h-full object-contain" />
           </div>
         </div>
-        <div
-          ref={swiperNextRef}
-          className="hidden lg:flex swiper-button-next top-[42%] transform -translate-y-1/2"
-        >
+        <div className="hidden lg:flex swiper-button-next-rec top-[42%] transform -translate-y-1/2">
           <div className="w-[16px] h-[16px]">
             <HiChevronRight className="w-full h-full object-contain" />
           </div>

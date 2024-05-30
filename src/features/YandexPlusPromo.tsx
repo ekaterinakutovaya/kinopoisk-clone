@@ -1,38 +1,18 @@
-import banner from "../../public/images/yandex-banner.jpg";
+import banner from "/images/yandex-banner.jpg";
 import { Button } from "@/components/ui/button.tsx";
 import { ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation } from "swiper/modules";
 import { festivals } from "@/constants.tsx";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
-import { MutableRefObject, useEffect, useRef } from "react";
-import { NavigationOptions, Swiper as SwiperType } from "swiper/types";
 import { NowWatchingCard } from "@/components/NowWatchingCard.tsx";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/free-mode";
 
 export const YandexPlusPromo = () => {
-  const swiperRef: MutableRefObject<SwiperType | null> = useRef(null);
-  const swiperPrevRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-  const swiperNextRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-
-  useEffect(() => {
-    if (swiperRef.current && swiperRef.current.navigation) {
-      swiperRef.current.navigation.update();
-    }
-  }, []);
-
-  const handleSwiperInit = (swiper: SwiperType) => {
-    swiperRef.current = swiper;
-    if (swiper.params.navigation) {
-      const navigation = swiper.params.navigation as NavigationOptions;
-      navigation.prevEl = swiperPrevRef.current;
-      navigation.nextEl = swiperNextRef.current;
-      swiper.navigation.init();
-      swiper.navigation.update();
-    }
-  };
-
   return (
-    <div className="w-full mt-[30px] ">
+    <div className="w-full mt-[30px]">
       <div className="yandex-wrapper">
         <div className="yandex-content-wrapper">
           <div>
@@ -92,12 +72,11 @@ export const YandexPlusPromo = () => {
             modules={[Navigation, FreeMode]}
             slidesPerView={4}
             spaceBetween={15}
-            onSwiper={handleSwiperInit}
             onSlideChange={() => console.log("slideChange")}
             className="w-full"
             navigation={{
-              prevEl: swiperPrevRef.current,
-              nextEl: swiperNextRef.current,
+              prevEl: ".swiper-button-prev-yandex",
+              nextEl: ".swiper-button-next-yandex",
             }}
             breakpoints={{
               0: {
@@ -119,18 +98,12 @@ export const YandexPlusPromo = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div
-            ref={swiperPrevRef}
-            className="hidden lg:flex swiper-button-prev top-[50%] transform -translate-y-1/2"
-          >
+          <div className="hidden lg:flex swiper-button-prev-yandex top-[50%] transform -translate-y-1/2">
             <div className="w-[16px] h-[16px]">
               <HiChevronLeft className="w-full h-full object-contain" />
             </div>
           </div>
-          <div
-            ref={swiperNextRef}
-            className="hidden lg:flex swiper-button-next top-[50%] transform -translate-y-1/2"
-          >
+          <div className="hidden lg:flex swiper-button-next-yandex top-[50%] transform -translate-y-1/2">
             <div className="w-[16px] h-[16px]">
               <HiChevronRight className="w-full h-full object-contain" />
             </div>

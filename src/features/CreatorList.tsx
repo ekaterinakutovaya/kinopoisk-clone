@@ -6,37 +6,38 @@ import { NavigationOptions, Swiper as SwiperType } from "swiper/types";
 import { chunkArray } from "@/lib/utils.ts";
 import { Person } from "@/types.ts";
 
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/free-mode";
+
 type Props = {
   creators: Person[] | null;
 };
 
 export const CreatorList = ({ creators }: Props) => {
-  if (!creators) {
-    return null;
-  }
+  const creatorsSwiperRef: MutableRefObject<SwiperType | null> = useRef(null);
+  const creatorsSwiperPrevRef: MutableRefObject<HTMLDivElement | null> =
+    useRef(null);
+  const creatorsSwiperNextRef: MutableRefObject<HTMLDivElement | null> =
+    useRef(null);
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const swiperRef: MutableRefObject<SwiperType | null> = useRef(null);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const swiperPrevRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const swiperNextRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-
-  const chunkedList = chunkArray(creators, 2);
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if (swiperRef.current && swiperRef.current.navigation) {
-      swiperRef.current.navigation.update();
+    if (creatorsSwiperRef.current && creatorsSwiperRef.current.navigation) {
+      creatorsSwiperRef.current.navigation.update();
     }
   }, []);
 
-  const handleSwiperInit = (swiper: SwiperType) => {
-    swiperRef.current = swiper;
+  if (!creators) {
+    return null;
+  }
+  const chunkedList = chunkArray(creators, 2);
+
+  const handleSwiperInitCreators = (swiper: SwiperType) => {
+    creatorsSwiperRef.current = swiper;
     if (swiper.params.navigation) {
       const navigation = swiper.params.navigation as NavigationOptions;
-      navigation.prevEl = swiperPrevRef.current;
-      navigation.nextEl = swiperNextRef.current;
+      navigation.prevEl = creatorsSwiperPrevRef.current;
+      navigation.nextEl = creatorsSwiperNextRef.current;
       swiper.navigation.init();
       swiper.navigation.update();
     }
@@ -53,11 +54,12 @@ export const CreatorList = ({ creators }: Props) => {
           modules={[Navigation, FreeMode]}
           slidesPerView={4}
           spaceBetween={15}
-          onSwiper={handleSwiperInit}
+          onSwiper={handleSwiperInitCreators}
+          onSlideChange={() => console.log("slideChange")}
           className="w-full"
           navigation={{
-            prevEl: swiperPrevRef.current,
-            nextEl: swiperNextRef.current,
+            prevEl: creatorsSwiperPrevRef.current,
+            nextEl: creatorsSwiperNextRef.current,
           }}
           breakpoints={{
             0: {
@@ -101,7 +103,7 @@ export const CreatorList = ({ creators }: Props) => {
           ))}
         </Swiper>
         <div
-          ref={swiperPrevRef}
+          ref={creatorsSwiperPrevRef}
           className="hidden lg:flex swiper-button-prev top-[50%] transform -translate-y-1/2"
         >
           <div className="w-[16px] h-[16px]">
@@ -109,7 +111,7 @@ export const CreatorList = ({ creators }: Props) => {
           </div>
         </div>
         <div
-          ref={swiperNextRef}
+          ref={creatorsSwiperNextRef}
           className="hidden lg:flex swiper-button-next top-[50%] transform -translate-y-1/2"
         >
           <div className="w-[16px] h-[16px]">
