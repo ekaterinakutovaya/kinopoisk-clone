@@ -24,7 +24,7 @@ export const Suggest = ({ data }: Props) => {
                 className="w-full min-h-[36px] py-[10px] px-[16px] flex items-start justify-between hover:bg-gray-50"
               >
                 <div className="flex items-center">
-                  <div className="w-[32px] h-[48px] overflow-hidden mr-[14px]">
+                  <div className="w-[32px] min-w-[32px] h-[48px] overflow-hidden mr-[14px]">
                     <img
                       src={item.poster?.previewUrl}
                       alt=""

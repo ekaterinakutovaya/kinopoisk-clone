@@ -1,6 +1,6 @@
 import { IoSearch } from "react-icons/io5";
 import { Button } from "@/components/ui/button.tsx";
-import { BadgeCheck, X } from "lucide-react";
+import { X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Loader } from "@/components/Loader.tsx";
 import { Movie } from "@/types.ts";
@@ -78,9 +78,6 @@ export const SearchMobile = ({ data, setSearchOpen }: SearchMobileProps) => {
                       </span>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <BadgeCheck />
                 </div>
               </Link>
             ))

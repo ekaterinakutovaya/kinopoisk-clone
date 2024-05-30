@@ -6,14 +6,14 @@ import { festivals } from "@/constants.tsx";
 import "swiper/css/navigation";
 
 import { FreeMode, Navigation } from "swiper/modules";
-import { useEffect, useRef } from "react";
-import { NavigationOptions } from "swiper/types";
+import { MutableRefObject, useEffect, useRef } from "react";
+import { NavigationOptions, Swiper as SwiperType } from "swiper/types";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 
 export const Festivals = () => {
-  const swiperPrevRef = useRef(null);
-  const swiperNextRef = useRef(null);
-  const swiperRef = useRef<any>(null);
+  const swiperRef: MutableRefObject<SwiperType | null> = useRef(null);
+  const swiperPrevRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+  const swiperNextRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.navigation) {
@@ -21,7 +21,7 @@ export const Festivals = () => {
     }
   }, []);
 
-  const handleSwiperInit = (swiper: any) => {
+  const handleSwiperInit = (swiper: SwiperType) => {
     swiperRef.current = swiper;
     if (swiper.params.navigation) {
       const navigation = swiper.params.navigation as NavigationOptions;
@@ -46,6 +46,7 @@ export const Festivals = () => {
             slidesPerView={4}
             spaceBetween={15}
             onSwiper={handleSwiperInit}
+            onSlideChange={() => console.log("slideChange")}
             className="w-full"
             navigation={{
               prevEl: swiperPrevRef.current,
