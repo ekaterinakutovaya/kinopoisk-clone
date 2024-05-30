@@ -2,6 +2,7 @@ import { IoStar, IoStarHalf } from "react-icons/io5";
 import { Button } from "@/components/ui/button.tsx";
 import { Plus } from "lucide-react";
 import { formatNumberWithSpaces } from "@/lib/utils.ts";
+import { ProgressBarRating } from "@/components/ProgressBarRating.tsx";
 
 type Props = {
   ratingKp: number;
@@ -121,14 +122,7 @@ export const MovieRating = ({
         </div>
       </div>
 
-      {/*Progress bar rating*/}
-      {/*<div className="w-full grid grid-cols-2 gap-4 pt-[30px]">*/}
-      {/*  <div>*/}
-      {/*    <div>Рейтинг кинокритиков в мире</div>*/}
-      {/*    <div className="mb-[12px] text-[13px] relative flex items-center"></div>*/}
-      {/*  </div>*/}
-      {/*  <div>2</div>*/}
-      {/*</div>*/}
+      <ProgressBarRating />
     </>
   );
 };

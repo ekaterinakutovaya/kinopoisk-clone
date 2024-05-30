@@ -193,7 +193,26 @@ aside {
   -webkit-transition: opacity 1s ease-out;
   transition: opacity 1s ease-out;
 }
+.tickets-wrapper {
+  background-image: url(//avatars.mds.yandex.net/get-bunker/56833/43c1fcf1b77eef0d42cbf419e346bc92af930c46/940x400);
+  opacity: 1;
+  background-repeat: no-repeat;
+  background-position: -1000%;
+  background-size: cover;
+  -webkit-transition: opacity 1s ease-out;
+  transition: opacity 1s ease-out;
+}
 
+.ticket-poster-wrapper::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,#000 6.25%,#000 6.26%,rgba(0,0,0,.99) 14.15%,rgba(0,0,0,.961) 20.77%,rgba(0,0,0,.915) 26.27%,rgba(0,0,0,.856) 30.8%,rgba(0,0,0,.785) 34.5%,rgba(0,0,0,.705) 37.54%,rgba(0,0,0,.619) 40.06%,rgba(0,0,0,.529) 42.21%,rgba(0,0,0,.437) 44.15%,rgba(0,0,0,.347) 46.03%,rgba(0,0,0,.261) 47.99%,rgba(0,0,0,.18) 50.2%,rgba(0,0,0,.108) 52.79%,rgba(0,0,0,.047) 55.94%,transparent 59.77%);
+}
 .promo-wrapper::after {
   content: '';
   position: absolute;
@@ -224,7 +243,7 @@ aside {
   transition: background .2s ease,transform .2s ease;
 }
 
-.swiper-button-prev-festival {
+.swiper-button-prev-festival, .swiper-button-prev-tickets {
   left: var(--swiper-navigation-sides-offset, 10px);
   right: auto;
 
@@ -234,7 +253,7 @@ aside {
   cursor: pointer;
 }
 
-.swiper-button-next-festival {
+.swiper-button-next-festival, .swiper-button-next-tickets {
   right: var(--swiper-navigation-sides-offset, 10px);
   left: auto;
 
@@ -244,7 +263,7 @@ aside {
   cursor: pointer;
 }
 
-.swiper-button-prev-festival, .swiper-button-next-festival {
+.swiper-button-prev-festival, .swiper-button-next-festival, .swiper-button-prev-tickets, .swiper-button-next-tickets {
   position: absolute;
   border: 1px solid #e8e8e8;
   border-radius: 9999px;
@@ -262,6 +281,13 @@ aside {
   opacity: 0;
 }
 .swiper-button-next-festival.swiper-button-disabled {
+  opacity: 0;
+}
+
+.swiper-button-prev-tickets.swiper-button-disabled {
+  opacity: 0;
+}
+.swiper-button-next-tickets.swiper-button-disabled {
   opacity: 0;
 }
 
@@ -601,4 +627,130 @@ aside {
   text-decoration: none;
   opacity: .5;
   color: #fff;
+}
+
+.filmRatingBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  font-size: 13px;
+
+  &:after {
+    display: block;
+    order: 2;
+    width: 2px;
+    height: 22px;
+    content: "";
+    background: #093;
+
+  }
+}
+
+
+.greenBar {
+  position: relative;
+  order: 1;
+  color: #093;
+  border-radius: 2px 0 0 2px;
+  background-color: rgba(0,153,51,.4);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16px;
+  font-size: 13px;
+  font-weight: 500;
+
+  flex: 69 1 0%;
+  min-width: 30px;
+}
+
+.redBar {
+  order: 3;
+  color: #fe000b;
+  border-radius: 0 2px 2px 0;
+  background-color: rgba(255,102,0,.3);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16px;
+  font-size: 13px;
+  font-weight: 500;
+
+  flex: 31 1 0%;
+  min-width: 30px;
+}
+
+.positiveBar {
+  position: absolute;
+  top: 0;
+  left: -32767px;
+  display: inline-block;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  font-size: 13px;
+
+  &:after {
+    display: block;
+    order: 2;
+    width: 2px;
+    height: 22px;
+    content: "";
+    background: #093;
+
+  }
+}
+
+.actionBar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actionBarLeft {
+  display: flex;
+  margin-right: 16px;
+}
+
+.film-rating {
+  display: inline-block;
+}
+
+
+.reviews-stat {
+  display: block;
+  padding-inline-start: 9px;
+  padding-inline-end: 9px;
+  flex: 0 0 200px;
+
+  position: sticky;
+  top: 60px;
+  padding-top: 17px;
+}
+
+.reviews-total {
+  //padding-left: 7px;
+  border-left: 2px solid #f50;
+  display: flex;
+  flex-flow: column;
+  padding-left: 9px;
+  text-decoration: none;
+  margin-bottom: 12px;
+
+}
+
+.total12 {
+  margin-bottom: 2px;
+  font-size: 28px;
+  line-height: 28px;
+}
+
+.positive-reviews {
+  display: flex;
+  flex-flow: column;
+  padding-left: 9px;
+  text-decoration: none;
+  margin-bottom: 12px;
 }

@@ -6,7 +6,8 @@ import axios from "axios";
 import { Loader } from "@/components/Loader.tsx";
 import { MovieDetails } from "@/types.ts";
 import { MovieRaitingsBlock } from "@/features/MovieRaitingsBlock.tsx";
-import { ProgressBarRating } from "@/components/ProgressBarRating.tsx";
+import { UserReviews } from "@/components/UserReviews.tsx";
+import { Tickets } from "@/features/Tickets.tsx";
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -53,11 +54,14 @@ const MoviePage = () => {
               <MovieDesc data={results} />
               <MovieDescMobile data={results} />
               <MovieRaitingsBlock data={results} />
+              <div className="hidden lg:flex max-w-[1200px] my-0 mx-auto pt-[40px] justify-between gap-[30px]">
+                <Tickets />
+              </div>
             </>
           )
         )}
 
-        <ProgressBarRating />
+        <UserReviews />
       </div>
     </div>
   );

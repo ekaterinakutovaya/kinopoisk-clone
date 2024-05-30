@@ -3,6 +3,7 @@ import { PromoBlock } from "@/features/PromoBlock.tsx";
 import { Festivals } from "@/features/Festivals.tsx";
 import { Recommends } from "@/features/Recommends.tsx";
 import { YandexPlusPromo } from "@/features/YandexPlusPromo.tsx";
+import { Tickets } from "@/features/Tickets.tsx";
 
 export const HomePage = () => {
   return (
@@ -16,6 +17,7 @@ export const HomePage = () => {
       <div className="max-w-full flex-1 px-[16px] lg:px-[50px] pt-[20px] lg:pt-0 mt-header-height lg:mt-[calc(30px+var(--header-height))]">
         <PromoBlock />
         <Festivals />
+        <Tickets />
         <Recommends />
         <YandexPlusPromo />
       </div>

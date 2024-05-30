@@ -8,7 +8,7 @@ type Props = {
 
 export const MovieRaitingsBlock = ({ data }: Props) => {
   return (
-    <div className="hidden lg:flex max-w-[1200px] my-0 mx-auto pt-[40px] pb-[60px] justify-between gap-[30px] border-bottom">
+    <div className="hidden lg:flex max-w-[1200px] my-0 mx-auto pt-[40px] justify-between gap-[30px] border-bottom">
       <div className="w-full grid grid-cols-[1fr_320px] gap-x-12 gap-y-4">
         <div>
           <div className="flex items-center gap-6 border-bottom pb-4">
@@ -42,12 +42,20 @@ export const MovieRaitingsBlock = ({ data }: Props) => {
             <p>{data.description && data.description}</p>
           </div>
 
-          <MovieRating
-            ratingKp={data.rating.kp}
-            ratingImdb={data.rating.imdb}
-            kpVotes={data.votes.kp}
-            imdbVotes={data.votes.imdb}
-          />
+          {/*<MovieRating*/}
+          {/*  ratingKp={8.204}*/}
+          {/*  ratingImdb={7.3}*/}
+          {/*  kpVotes={35094}*/}
+          {/*  imdbVotes={168}*/}
+          {/*/>*/}
+          {data && (
+            <MovieRating
+              ratingKp={data.rating.kp}
+              ratingImdb={data.rating.imdb}
+              kpVotes={data.votes.kp}
+              imdbVotes={data.votes.imdb}
+            />
+          )}
         </div>
         <div>
           <div className="flex items-center mb-[16px]">

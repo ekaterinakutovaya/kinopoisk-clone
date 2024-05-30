@@ -47,7 +47,6 @@ export const Footer = () => {
         <li>Соглашение</li>
         <li>Вакансии</li>
         <li>Реклама</li>
-        <li>Соглашение</li>
       </ul>
 
       <div className="footer-bottom px-[40px] py-[28px] flex flex-col md:flex-row gap-8 items-center justify-between">
