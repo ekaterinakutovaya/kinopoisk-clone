@@ -51,7 +51,7 @@ export const HeaderMobile = () => {
 
   return (
     <header className="bg-[#141414]  w-full">
-      <div className="h-header-height container flex items-center gap-x-4 px-[16px] fixed top-0 z-10 bg-[#141414]  w-full">
+      <div className="h-header-height flex items-center gap-x-4 px-[16px] fixed top-0 z-10 bg-[#141414]  w-full">
         <Button
           variant="ghost"
           size="icon"
