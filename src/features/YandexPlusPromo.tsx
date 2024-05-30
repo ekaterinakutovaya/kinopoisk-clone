@@ -12,7 +12,7 @@ import "swiper/css/free-mode";
 
 export const YandexPlusPromo = () => {
   return (
-    <div className="w-full mt-[30px]">
+    <div className="w-full mt-[30px] mb-[40px]">
       <div className="yandex-wrapper">
         <div className="yandex-content-wrapper">
           <div>

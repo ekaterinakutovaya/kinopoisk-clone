@@ -18,7 +18,7 @@ export const Sidebar = () => {
 
   return (
     <aside
-      className={`fixed min-w-[250px] w-[250px] sidebar-border pt-[27px] pb-[25px] transition-top duration-300 ${scrolled ? "top-[72px] h-[calc(100vh-72px)]" : "h-desktop-body-height"}`}
+      className={`fixed min-w-[250px] w-[250px] pt-[27px] pb-[25px] transition-top duration-300 ${scrolled ? "top-[72px] h-[calc(100vh-72px)]" : "h-desktop-body-height"}`}
     >
       <nav className="flex flex-col gap-4 ml-[50px]">
         {mainNavigation.map((item, index) => (
