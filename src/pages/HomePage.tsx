@@ -2,6 +2,7 @@ import { Sidebar } from "@/components/Sidebar.tsx";
 import { PromoBlock } from "@/features/PromoBlock.tsx";
 import { Festivals } from "@/features/Festivals.tsx";
 import { Recommends } from "@/features/Recommends.tsx";
+import { YandexPlusPromo } from "@/features/YandexPlusPromo.tsx";
 
 export const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ export const HomePage = () => {
         <PromoBlock />
         <Festivals />
         <Recommends />
+        <YandexPlusPromo />
         <div className="h-[3000px]">temp</div>
       </div>
     </div>
