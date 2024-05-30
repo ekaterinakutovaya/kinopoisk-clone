@@ -337,11 +337,17 @@ aside {
 .yandex-wrapper {
   position: relative;
   box-sizing: border-box;
-  width: 100%;
-  min-height: 614px;
-  padding: 60px 86px 50px;
+
+  min-height: unset;
+  padding: 120px 16px;
   text-align: center;
   background-color: #000;
+
+  @media screen and (min-width: 728px) {
+    width: 100%;
+    padding: 60px 86px 50px;
+    min-height: 614px;
+  }
 }
 
 .yandex-cover {

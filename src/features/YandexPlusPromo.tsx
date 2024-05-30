@@ -32,17 +32,19 @@ export const YandexPlusPromo = () => {
   };
 
   return (
-    <div className="w-full mt-[30px]">
+    <div className="w-full mt-[30px] ">
       <div className="yandex-wrapper">
         <div className="yandex-content-wrapper">
           <div>
-            <span className="text-white text-[36px]">Яндекс плюс</span>
+            <span className="text-white text-[22px] md:text-[36px]">
+              Яндекс плюс
+            </span>
 
             <div className="text-[16px] mt-[18px] mb-[32px]">
-              <div className="text-[44px] font-bold text-white">
+              <div className="text-[26px] md:text-[44px] font-bold text-white">
                 Фильмы и сериалы по подписке
               </div>
-              <div className="text-[44px] font-bold text-[#868eff]">
+              <div className="text-[26px] md:text-[44px] font-bold text-[#868eff]">
                 90 дней бесплатно
               </div>
             </div>
@@ -73,7 +75,7 @@ export const YandexPlusPromo = () => {
         <img src={banner} alt="" className="yandex-cover" />
       </div>
 
-      <div className="w-full max-w-[930px] bg-[#000] pt-0 pr-12 pb-12 pl-12">
+      <div className="w-full max-w-[930px] bg-[#000] pt-0 pl-[16px] md:pr-12 pb-12 md:pl-12">
         <div className="flex items-center mb-[16px]">
           <h2 className="text-white font-bold mb-[16px] text-[22px] pt-[30px]">
             Смотрят сейчас
