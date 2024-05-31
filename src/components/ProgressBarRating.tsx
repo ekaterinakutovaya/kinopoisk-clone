@@ -2,7 +2,7 @@ import { IoStar } from "react-icons/io5";
 
 export const ProgressBarRating = () => {
   return (
-    <div className="w-full grid grid-cols-2 gap-4 pt-[30px]">
+    <div className="w-full grid grid-cols-2 gap-4 pt-[30px] mb-[30px]">
       <div>
         <div className="mb-[16px] text-[18px] font-bold">
           Рейтинг кинокритиков в мире
