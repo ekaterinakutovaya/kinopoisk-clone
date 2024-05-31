@@ -1,3 +1,3 @@
 export const TicketsPromo = () => {
-  return <div></div>;
+  return <div>TicketsPromo</div>;
 };
