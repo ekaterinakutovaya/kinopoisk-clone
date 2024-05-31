@@ -31,7 +31,7 @@ export const mainNavigation = [
     icon: <Play className="w-[24px] h-[24px]" />,
   },
   {
-    to: "/movies",
+    to: "/movie",
     title: "Фильмы",
     isActive: false,
     icon: <Tv2 className="w-[24px] h-[24px]" />,

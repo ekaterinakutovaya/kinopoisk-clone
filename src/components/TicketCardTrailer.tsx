@@ -14,22 +14,20 @@ export const TicketCardTrailer = () => {
             </video>
           </div>
           <div className="promo-content">
-            <Link to="#">
-              <img src="https://avatars.mds.yandex.net/get-bunker/50064/f4d9dc3283cae3470699dc5127237d131cd3e93c/349x110" />
+            <img src="https://avatars.mds.yandex.net/get-bunker/50064/f4d9dc3283cae3470699dc5127237d131cd3e93c/349x110" />
 
-              <div className="mt-[12px] text-[11px] text-[hsla(0,0%,100%,.6)]">
-                Екатерина Темнова, Карина Каграманян, Карина Мнацаканян
-              </div>
+            <div className="mt-[12px] text-[11px] text-[hsla(0,0%,100%,.6)]">
+              Екатерина Темнова, Карина Каграманян, Карина Мнацаканян
+            </div>
 
-              <div className="mt-[14px]">
-                <div className="flex items-center gap-3">
-                  <Button variant="secondary" size="sm" className="!h-[40px]">
-                    <IoTicketSharp className="min-w-[20px] min-h-[20px] " />
-                    <div className="pl-[4px]">Билеты</div>
-                  </Button>
-                </div>
+            <div className="mt-[14px]">
+              <div className="flex items-center gap-3">
+                <Button variant="secondary" size="sm" className="!h-[40px]">
+                  <IoTicketSharp className="min-w-[20px] min-h-[20px] " />
+                  <div className="pl-[4px]">Билеты</div>
+                </Button>
               </div>
-            </Link>
+            </div>
           </div>
         </div>
 

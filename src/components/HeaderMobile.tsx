@@ -18,6 +18,10 @@ export const HeaderMobile = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+  };
+
   useEffect(() => {
     if (menuOpen || searchOpen) {
       document.body.classList.add("no-scroll");
@@ -71,6 +75,7 @@ export const HeaderMobile = () => {
             <NavLink
               key={index}
               to={item.to}
+              onClick={handleLinkClick}
               className={({ isActive }) =>
                 isActive
                   ? "text-white font-bold text-[18px] leading-[24px] flex items-center gap-x-[7px] relative active-nav-link"
